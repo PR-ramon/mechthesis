@@ -1,49 +1,47 @@
 %------------------------------------------------------------------------------
 % Define title, author(s), affiliation and publishing status
 %
-\papertitle[Development of a Superlaser System] % Short title used in headlines (optional)
+\papertitle[LES of a moderate-APG TBL at high $Re$] % Short title used in headlines (optional)
 {%
-  Development of a Superlaser System for space applications% THE COMMENT SYMBOL AT THE END OF THIS LINE IS NEEDED
+  An adverse-pressure-gradient turbulent boundary layer with nearly-constant $\boldsymbol{\beta \simeq 1.4}$ up to $\boldsymbol{Re_{\theta} \simeq 8,700}$% THE COMMENT SYMBOL AT THE END OF THIS LINE IS NEEDED
 }%
 %
-\papertoctitle{Development of a Superlaser System for space\\applications} % Title for toc
+\papertoctitle{An adverse-pressure-gradient turbulent boundary layer \\with nearly-constant ${\beta \simeq 1.4}$ up to ${Re_{\theta} \simeq 8,700}$} % Title for toc
 %
-\paperauthor[A. Skywalker \& D. Vader] % Short authors used in headlines and List Of Papers
+\paperauthor[R. Pozuelo, Q. Li, P. Schlatter \& R.Vinuesa] % Short authors used in headlines and List Of Papers
 {%
-  Anakin Skywalker$^1$ and Darth Vader$^2$%
+  Ram\'on Pozuelo$^1$, Qiang Li$^1$, Philipp Schlatter$^1$ and Ricardo Vinuesa$^1$%
 }%
 %
 %\listpaperauthor{A. Skywalker \& D. Vader}% (optional) Short authors used in List Of Papers
 %
 \paperaffiliation
 {%
-  $^1$ Linn\'e FLOW Centre, KTH Mechanics, S-100 44 Stockholm, Sweden\\
-  $^2$ Super-laser LAB, The Death Star, currently orbiting Alderaan%
+  $^1$ FLOW, Engineering Mechanics, KTH Royal Institute of Technology, SE-100 44 Stockholm, Sweden
 }%
 %
-\paperjournal[Gal. Empire Publ.] % Short publish info used in List Of Papers
+\paperjournal[J.~Fluid Mech.] % Short publish info used in List Of Papers
 {%
-	Galactic Empire Publications%
+	Journal of Fluid Mechanics%
 }%
 %
-\papervolume{42}%
+\papervolume{939}%
 %
-\papernumber{2}%
+\papernumber{1}%
 %
-\paperpages{1--10}%
+\paperpages{A34}%
 %
-\paperyear{3639}%
+\paperyear{2022}%
 %
 \papersummary%
 {% Insert summary of the paper here (used in introduction) 
-	The implications of concurrent archetypes have been far-reaching and
-	pervasive. Given the current status of heterogeneous technology,
-	cyberinformaticians daringly desire the key unification of the Turing
-	machine and erasure coding. We explore new decentralized information,
-	which we call Tuna.
+	A new adverse-pressure-gradient turbulent boundary layer simulation is presented.
+	The largest Reynolds number obtained in the simulation makes it possible to compare and validate results with those of experiments at similar pressure-gradient conditions.
+	The large database obtained make it possible to analyze 2-dimensional statistics as
+	well as spectral information in time and spanwise directions.
 }%
 %
-\graphicspath{{paper1/}}%
+\graphicspath{{paper1/figs}}%
 %
 %
 %===============================================================================
@@ -59,11 +57,12 @@
 %------------------------------------------------------------------------------
 %
 \begin{paperabstract}
-	The implications of concurrent archetypes have been far-reaching and
-	pervasive. Given the current status of heterogeneous technology,
-	cyberinformaticians daringly desire the key unification of the Turing
-	machine and erasure coding. We explore new decentralized information,
-	which we call Tuna.
+In this study, a new well-resolved large-eddy-simulation (LES) of an incompressible near-equilibrium adverse-pressure-gradient (APG) turbulent boundary layer (TBL) over a flat plate is presented. In this simulation, we have established a near-equilibrium APG over a wide Reynolds-number range. In this so-called region of interest (ROI), the Clauser--Rotta pressure-gradient parameter $\beta$ exhibits an approximately constant value of around 1.4, and the Reynolds number based on momentum thickness reaches $\Rey_{\theta}=8700$. To the authors’ knowledge, this is to date the highest $\Rey_{\theta}$ achieved for a near-equilibrium APG TBL under an approximately constant moderate APG.  
+We evaluated the self-similarity of the outer region using two scalings, namely the Zagarola--Smits and an alternative one based on edge velocity and displacement thickness. 
+Our results reveal that outer-layer similarity is achieved, and the viscous scaling collapses the near-wall region of the mean flow in agreement with classical theory.
+Spectral analysis reveals that the APG displaces some small-scale energy from the near-wall to the outer region, an effect observed for all the components of the Reynolds-stress tensor, which becomes more evident at higher Reynolds numbers.
+Generally, the effects of the APG are more noticeable at lower Reynolds numbers. For instance, the outer peak of turbulent-kinetic-energy (TKE) production is less prominent at higher $Re$. 
+While the scale separation increases with $\Rey$ in zero-pressure-gradient (ZPG) TBLs, this effect becomes accentuated by the APG. Despite the reduction of the outer TKE production at higher Reynolds numbers, the mechanisms of energization of large scales are still present. 
 \end{paperabstract}
 
 
@@ -81,8 +80,8 @@
 %\clearpage
 \bibliographystyle{jfm}
 \bibliography{thesis}
-%
-\IfFileExists{paper1/paper.bbl}{\input{paper1/paper.bbl}}{}
+% %
+% \IfFileExists{paper1/paper.bbl}{\input{paper1/paper.bbl}}{}
 
 %===============================================================================
 %                            END PAPER

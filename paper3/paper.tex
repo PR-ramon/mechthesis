@@ -1,0 +1,88 @@
+%------------------------------------------------------------------------------
+% Define title, author(s), affiliation and publishing status
+%
+\papertitle[Skin-friction contributions in adverse-pressure-gradient turbulent boundary layers] % Short title used in headlines (optional)
+{%
+  A new perspective on skin-friction contributions in adverse-pressure-gradient turbulent boundary layers% THE COMMENT SYMBOL AT THE END OF THIS LINE IS NEEDED
+}%
+%
+\papertoctitle{Skin-friction contributions in adverse-pressure-gradient \\ turbulent boundary layers} % Title for toc
+%
+% \paperauthor[M. Atzori, F. Mallor, R. Pozuelo, A. Stroh, D. Gatti, K. Fukagata, R. Vinuesa \& P. Schlatter] % Short authors used in headlines and List Of Papers
+\paperauthor[M. Atzori {\it et al.}] % Short authors used in headlines and List Of Papers
+{%
+  Marco Atzori$^1$, Ferm\'in Mallor$^2$, Ram\'on Pozuelo$^2$, Alexander Stroh$^3$, Davide Gatti$^3$, Koji Fukagata$^4$, Ricardo Vinuesa$^2$ \& Philipp Schlatter$^2$%  
+}%
+%
+%\listpaperauthor{A. Skywalker \& D. Vader}% (optional) Short authors used in List Of Papers
+%
+\paperaffiliation
+{%
+  $^1$ Department of Particulate Flow Modelling, Johannes Kepler University, 4040 Linz, Austria\\
+  $^2$ FLOW, Engineering Mechanics, KTH Royal Institute of Technology, SE-100 44 Stockholm, Sweden\\
+  $^3$ Institute of Fluid Mechanics (ISTM), Karlsruhe Institute of Technology, 76131 Karlsruhe, Germany \\
+  $^4$ Department of Mechanical Engineering, Keio University, 223-8522 Yokohama, Japan %
+}%
+%
+\paperjournal[Phys. Fluids] % Short publish info used in List Of Papers
+{%
+	Physics of Fluids%
+}%
+%
+\papervolume{AAAAA}%
+%
+\papernumber{4}%
+%
+\paperpages{AAAAAA}%
+%
+\paperyear{2022}%
+%
+\papersummary%
+{% Insert summary of the paper here (used in introduction) 
+	BBBBBBBB
+}%
+%
+% 
+% 
+\graphicspath{{paper3/figs}}%
+%
+%
+%===============================================================================
+%                            BEGIN PAPER
+%===============================================================================
+%
+\begin{paper}
+
+\makepapertitle
+
+%------------------------------------------------------------------------------
+% Abstract
+%------------------------------------------------------------------------------
+%
+\begin{paperabstract}
+    For adverse-pressure-gradient turbulent boundary layers, the study of integral skin-friction contributions still poses significant challenges. Beyond questions related to the integration boundaries and the derivation procedure, which have been thoroughly investigated in the literature, an important issue is how different terms should be aggregated. The nature of these flows, which exhibit significant in-homogeneity in the streamwise direction, usually results in cancellation between several contributions with high absolute values. We propose a formulation of the identity derived by Fukagata, Iwamoto \& Kasagi (Phys. Fluids, vol. 14, 2002, pp. 73--76), which we obtained from the convective form of the governing equations. A new skin-friction contribution is defined, considering wall-tangential convection and pressure gradient together. This contribution is related to the evolution of the dynamic pressure in the mean flow. The results of the decomposition are examined for a broad range of pressure-gradient conditions and different flow-control strategies. We found that the new formulation of the identity allows to readily identify the different regimes of near-equilibrium conditions and approaching separation. It also provides a more effective description of control effects. A similar aggregation between convection and pressure-gradient terms is also possible for any other decomposition where in-homogeneity contributions are considered explicitly. 
+\end{paperabstract}
+
+
+%------------------------------------------------------------------------------
+% Article
+%------------------------------------------------------------------------------
+%
+\input{paper3/article.tex}
+
+
+%------------------------------------------------------------------------------
+% Bibliography
+%------------------------------------------------------------------------------
+%
+%\clearpage
+\bibliographystyle{jfm}
+\bibliography{thesis}
+%
+% \IfFileExists{paper2/paper.bbl}{\input{paper2/paper.bbl}}{}
+
+%===============================================================================
+%                            END PAPER
+%===============================================================================
+\end{paper}
+

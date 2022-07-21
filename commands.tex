@@ -1,5 +1,58 @@
 % Insert HERE any additional commands
 
+% % Tikz commands
+\definecolor{magenta_1}{rgb}{0.64,0.08,0.18}
+\definecolor{yellow_1}{rgb}{0.93,0.69,0.13}
+% tikz commands for lines in captions
+%\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\blueline}  {\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\redline}   {\raisebox{2pt}{\tikz{\draw[-,red, solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\cyanline}  {\raisebox{2pt}{\tikz{\draw[-,cyan,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\orangeline}{\raisebox{2pt}{\tikz{\draw[-,orange,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\greenline} {\raisebox{2pt}{\tikz{\draw[-,green,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackline} {\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\magentaline} {\raisebox{2pt}{\tikz{\draw[-,magenta_1,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\yellowline} {\raisebox{2pt}{\tikz{\draw[-,yellow_1,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+
+
+\newcommand{\bluedash} {\raisebox{2pt}{\tikz{\draw[-,blue ,dashed,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\reddash}  {\raisebox{2pt}{\tikz{\draw[-,red  ,dashed,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\greendash}{\raisebox{2pt}{\tikz{\draw[-,green,dashed,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdash}{\raisebox{2pt}{\tikz{\draw[-,black,dashed,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\magentadash}{\raisebox{2pt}{\tikz{\draw[-,magenta_1,dashed,line width = 0.9pt](0,0) -- (5mm,0);}}}
+
+\newcommand{\blackcircle} {\raisebox{2pt}{\tikz{\draw [black]  (0,0) circle (2pt);}}}
+\newcommand{\bluecircle} {\raisebox{2pt}{\tikz{\draw [blue]  (0,0) circle (2pt);}}}
+\newcommand{\redcircle} {\raisebox{2pt}{\tikz{\draw [red]  (0,0) circle (2pt);}}}
+
+
+\newcommand{\bluepoint} {\raisebox{2pt}{\tikz{\filldraw [blue]  (0,0) circle (2pt);}}}
+\newcommand{\redpoint}  {\raisebox{2pt}{\tikz{\filldraw [red]   (0,0) circle (2pt);}}}
+\newcommand{\greenpoint}{\raisebox{2pt}{\tikz{\filldraw [green] (0,0) circle (2pt);}}}
+\newcommand{\blackpoint}{\raisebox{2pt}{\tikz{\filldraw [black] (0,0) circle (2pt);}}}
+
+\newcommand{\blackdotted}{\raisebox{2pt}{\tikz{\draw[-,black ,dotted,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\blackdashdot}{\raisebox{2pt}{\tikz{\draw[-,black ,dashdotted,line width = 0.9pt](0,0) -- (5mm,0);}}}
+
+\newcommand{\blackSquare} {\raisebox{2pt}{\tikz{\draw[black, very thick] (0,0) rectangle (3pt,3pt);}}}
+
+\newcommand{\magentaDiamond} {\raisebox{2pt}{\tikz{\draw[magenta, very thick] (0,0) -- (2pt, 2pt) -- (4pt,0) -- (2pt,-2pt) -- cycle ;}}}
+
+%
+% % Review Commands
+\newcommand{\rev}[1]{{\color{red}#1}}
+\newcommand{\highlight}[1]{{\color{green}[#1]}}
+\newcommand{\revd}[1]{{\color{blue}\sout{#1}}}
+\newcommand{\revdd}[2]{\revd{#1} \rev{#2}}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+
+\newcommand{\subf}[2]{%
+  {\small\begin{tabular}[t]{@{}c@{}}
+  #1\\#2
+  \end{tabular}}%
+}
 
 % as examples here are some commands from the JFM template:
 %

@@ -1,6 +1,32 @@
 % Insert HERE any additional packages
 
 \usepackage{graphicx} % Enhanced support for graphics
+\usepackage[normalem]{ulem}
+\usepackage{color}
+\usepackage{epstopdf, epsfig}
+\usepackage{amsmath}
+\usepackage[title]{appendix}
+% \usepackage[section]{placeins}
+\usepackage{placeins}
+\usepackage{tikz}
+
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{CJKutf8}
+% \usepackage{bm} % Esto es del paper 2 y crea problemas
+\usepackage{makecell}
+\hyphenation{title}
+
+% Hyperrefs
+% \usepackage{hyperref}
+% \hypersetup{
+%   colorlinks   = true, %Colours links instead of ugly boxes
+%   urlcolor     = blue, %Colour for external hyperlinks
+%   linkcolor    = blue, %Colour of internal links
+%   citecolor   = green %Colour of citations
+% }
+
 
 % Useful packages (not required):
 %
@@ -22,9 +48,17 @@
 \usepackage[utf8]{inputenc} % Accept different input encodings
 \usepackage[swedish,english]{babel} % Multilingual support for Plain TeX or LaTeX
 \usepackage{microtype} % Subliminal refinements towards typographical perfection
-\usepackage{natbib} % Flexible bibliography support
+% \usepackage{natbib} % Flexible bibliography support
+\usepackage[sectionbib]{natbib} % Flexible bibliography support
+\usepackage{chapterbib}
 \usepackage[hidelinks]{hyperref} % Extensive support for hypertext in LaTeX
-\usepackage{caption} % Correct figures and tables caption width
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = green %Colour of citations
+}
+% \usepackage{caption} % Correct figures and tables caption width
 \usepackage{etoolbox} % Make robust some counters that are made fragile by `calc`
 \robustify\setcounter
 \robustify\addtocounter
@@ -41,3 +75,65 @@
 % - amsgen
 % - crop        (if [printA4] or [cropmarks] options are used)
 % - fp          (if [happyadvisor] option is used)
+% 
+
+
+
+
+% ------------------------------------------------------------------------------------------------------
+% PAPER MARCO
+% ------------------------------------------------------------------------------------------------------
+% \usepackage{graphicx}% Include figure files
+% \usepackage{dcolumn}% Align table columns on decimal point
+% \usepackage{bm}% bold math
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+% \usepackage[utf8]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage{mathptmx}
+% \usepackage{etoolbox}
+% \usepackage{booktabs}
+% \usepackage{url}
+% \usepackage{hyperref}
+% \usepackage{color,graphicx}% color
+% \usepackage[dvipsnames]{xcolor}
+\usepackage{bm}
+
+\definecolor{grey}{rgb}{0.7,0.7,0.7}
+
+\definecolor{cNeutralGray}{RGB}{99,101,105}
+\definecolor{cGreenCurrent}{rgb}{0.4660,0.6740,0.1880}
+\definecolor{cEverGreen}{rgb}{0,0.5,0}
+\definecolor{cCyanCurrent}{rgb}{0.3010, 0.7450, 0.9330}
+\definecolor{cBlueSecondary}{RGB}{0, 75, 135}
+\definecolor{cViolet}{RGB}{204, 0, 204}
+\definecolor{cYellow}{RGB}{255, 255, 51}
+\definecolor{cOrangeUtility}{RGB}{242, 160, 0}
+\definecolor{cRedUtility}{RGB}{183, 49, 44}
+
+\definecolor{cBlueBrand}{RGB}{47, 126, 178}
+\definecolor{cVioletCurrent}{rgb}{0.4940, 0.1840, 0.5560}
+\definecolor{cBlack}{rgb}{0, 0, 0}
+\definecolor{cYellowCurrent}{rgb}{0.9290, 0.6940, 0.1250}
+
+
+% \newcommand{\rev}[1]{{\color{red}#1}}
+% \newcommand{\rev}[1]{#1}
+% \newcommand{\highlight}[1]{{\color{green}[#1]}}
+% \newcommand{\revd}[1]{{\color{blue}\sout{#1}}}
+% \newcommand{\marco}[1]{\textbf{{\color{cOrangeUtility} [#1] }}}
+
+%% Apr 2021: AIP requests that the corresponding 
+%% email to be moved after the affiliations
+\makeatletter
+\def\@email#1#2{%
+ \endgroup
+ \patchcmd{\titleblock@produce}
+  {\frontmatter@RRAPformat}
+  {\frontmatter@RRAPformat{\produce@RRAP{*#1\href{mailto:#2}{#2}}}\frontmatter@RRAPformat}
+  {}{}
+}%
+\makeatother
+
+% ------------------------------------------------------------------------------------------------------

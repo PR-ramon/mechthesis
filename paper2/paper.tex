@@ -1,53 +1,47 @@
 %------------------------------------------------------------------------------
 % Define title, author(s), affiliation and publishing status
 %
-\papertitle%[Succesfully testing an on-board Superlaser System] % Short title used in healines (optional)
+\papertitle[Decomposition of the mean friction drag in APG TBLs] % Short title used in headlines (optional)
 {%
- Succesfully testing\\an on-board Superlaser System% THE COMMENT SYMBOL AT THE END OF THIS LINE IS NEEDED
+  Decomposition of the mean friction drag in adverse-pressure-gradient turbulent boundary layers% THE COMMENT SYMBOL AT THE END OF THIS LINE IS NEEDED
 }%
 %
-\papertoctitle{Succesfully testing an on-board Superlaser System} % Title for toc
+\papertoctitle{Decomposition of the mean friction drag \\in adverse-pressure-gradient turbulent boundary layers} % Title for toc
 %
-\paperauthor[A. Skywalker \etal] % Short authors used in headlines and List Of Papers
+\paperauthor[Y. Fan, W. Li, M. Atzori, R. Pozuelo, P. Schlatter \& R. Vinuesa] % Short authors used in headlines and List Of Papers
 {%
-  Anakin Skywalker$^1$, Darth Vader$^2$, Obi-Wan Kenobi$^1$ and Supreme Cancellor Palpatine$^2$%
+  Yitong Fan$^1$, Weipeng Li$^1$, Marco Atzori$^2$, Ramon Pozuelo$^2$, Philipp Schlatter$^2$ and Ricardo Vinuesa$^2$%  
 }%
 %
-\listpaperauthor{A. Skywalker, D. Vader, O.-W. Kenoby \& Palpatine}% (optional) Short authors used in List Of Papers
+%\listpaperauthor{A. Skywalker \& D. Vader}% (optional) Short authors used in List Of Papers
 %
 \paperaffiliation
 {%
-  $^1$ Linn\'e FLOW Centre, KTH Mechanics, S-100 44 Stockholm, Sweden\\%
-  $^2$ Super-laser LAB, The Death Star, not orbiting Alderaan anymore ;)%
+  $^1$ School of Aeronautics and Astronautics, Shanghai Jiao Tong University, Shanghai, China, 200240\\
+  $^2$ FLOW, Engineering Mechanics, KTH Royal Institute of Technology, SE-100 44 Stockholm, Sweden%
 }%
 %
-\paperjournal[J. Force] % Short publish info used in List Of Papers
+\paperjournal[Phys. Rev. Fluids] % Short publish info used in List Of Papers
 {%
-	Journal of the Force%
+	Physical Review Fluids%
 }%
 %
-\papervolume{51}%
+\papervolume{5}%
 %
-%\papernumber{1}
+\papernumber{2}%
 %
-\paperpages{123--122}%
+\paperpages{114608}%
 %
-\paperyear{3640}%
+\paperyear{2020}%
 %
 \papersummary%
 {% Insert summary of the paper here (used in introduction) 
-	Many computational biologists would agree that, had it not been for
-	Byzantine fault tolerance, the synthesis of replication that made
-	developing and possibly investigating erasure coding a reality might
-	never have occurred. In this work, we prove  the synthesis of linked
-	lists. Even though such a hypothesis at first glance seems
-	counterintuitive, it always conflicts with the need to provide
-	object-oriented languages to systems engineers. APER, our new framework
-	for mobile archetypes, is the solution to all of these grand
-	challenges.
+	BBBBBBBB
 }%
 %
-\graphicspath{{paper2/}}%
+% 
+% 
+\graphicspath{{paper2/figs}}%
 %
 %
 %===============================================================================
@@ -63,16 +57,9 @@
 %------------------------------------------------------------------------------
 %
 \begin{paperabstract}
-	Many computational biologists would agree that, had it not been for
-	Byzantine fault tolerance, the synthesis of replication that made
-	developing and possibly investigating erasure coding a reality might
-	never have occurred. In this work, we prove  the synthesis of linked
-	lists. Even though such a hypothesis at first glance seems
-	counterintuitive, it always conflicts with the need to provide
-	object-oriented languages to systems engineers. APER, our new framework
-	for mobile archetypes, is the solution to all of these grand
-	challenges.
-        \keywords{laser, death-star}
+	In the present study, we exploit the Renard-Deck identity [``A theoretical decomposition of mean skin friction generation into physical phenomena across the boundary layer'', {\textit{J. Fluid Mech.}} 790, 339--367 (2016)]  to decompose the mean friction drag in adverse-pressure-gradient turbulent boundary layers (APG-TBLs) into three components, associated with viscous dissipation, turbulence kinetic energy production, and spatial growth of the flow, respectively. We consider adverse-pressure-gradient turbulent boundary layers developing on flat-plates and airfoils, with friction Reynolds numbers in the range $200<Re_\tau<2000$, and with Rotta-Clauser pressure-gradient parameters ($\beta$) ranging from 0 to 50. 
+The effects of Reynolds number, adverse pressure gradient, and the pressure-gradient-history on the contributing components are individually investigated, and special attention is paid to the comparisons with zero-pressure-gradient turbulent boundary layers (ZPG-TBLs).
+Our results indicate that the inner peaks of the dissipation and production terms are located at $y^+ \approx 6$ and $y^+ \approx 16.5$, respectively, and their outer peaks scale with the $99\%$ boundary-layer thickness ($\delta_{99})$, {\it i.e.} $y/\delta_{99} \approx 0.7$ and $y/\delta_{99} \approx 0.53$, respectively. These results are independent of the friction Reynolds number, the magnitude of $\beta$ and its development history. Moreover, the spatial-growth component is negative in the investigated APG-TBLs, and its magnitude increases with $\beta$. 
 \end{paperabstract}
 
 
@@ -91,8 +78,7 @@
 \bibliographystyle{jfm}
 \bibliography{thesis}
 %
-\IfFileExists{paper2/paper.bbl}{\input{paper2/paper.bbl}}{}
-
+% \IfFileExists{paper2/paper.bbl}{\input{paper2/paper.bbl}}{}
 
 %===============================================================================
 %                            END PAPER

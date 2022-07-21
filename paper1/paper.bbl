@@ -1,0 +1,316 @@
+\begin{thebibliography}{51}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\def\au#1{#1} \def\ed#1{#1} \def\yr#1{#1}\def\at#1{#1}\def\jt#1{\textit{#1}}
+  \def\bt#1{#1}\def\bvol#1{\textbf{#1}} \def\vol#1{#1} \def\pg#1{#1}
+  \def\publ#1{#1}\def\arxiv#1{#1}\def\org#1{#1}\def\st#1{\textit{#1}}
+
+\bibitem[Araya {\em et~al.\/}(2015)Araya, Castillo \& Hussain]{FPG_araya2015}
+{\sc \au{Araya, G.}, \au{Castillo, L.} \& \au{Hussain, F.}} \yr{2015}  \at{The
+  log behaviour of the {Reynolds} shear stress in accelerating turbulent
+  boundary layers}.  \jt{J.~Fluid Mech.}  \bvol{775},  \pg{189–200}.
+
+\bibitem[Bailey {\em et~al.\/}(2013)Bailey, Hultmark, Monty, Alfredsson, Chong,
+  Duncan, Fransson, Hutchins, Marusic, McKeon \& et~al.]{bailey_2013_JFM}
+{\sc \au{Bailey, S. C.~C.}, \au{Hultmark, M.}, \au{Monty, J.~P.},
+  \au{Alfredsson, P.~H.}, \au{Chong, M.~S.}, \au{Duncan, R.~D.}, \au{Fransson,
+  J. H.~M.}, \au{Hutchins, N.}, \au{Marusic, I.}, \au{McKeon, B.~J.} \&
+  \au{et~al.}} \yr{2013}  \at{Obtaining accurate mean velocity measurements in
+  high reynolds number turbulent boundary layers using pitot tubes}.
+  \jt{J.~Fluid Mech.}  \bvol{715},  \pg{642–670}.
+
+\bibitem[Bobke {\em et~al.\/}(2016)Bobke, Vinuesa, Örlü \&
+  Schlatter]{Bobke_2016}
+{\sc \au{Bobke, A.}, \au{Vinuesa, R.}, \au{Örlü, R.} \& \au{Schlatter, P}}
+  \yr{2016}  \at{Large-eddy simulations of adverse pressure gradient turbulent
+  boundary layers}.  \jt{J. Phys. Conf. Ser.}  \bvol{708},  \pg{012012}.
+
+\bibitem[Bobke {\em et~al.\/}(2017)Bobke, Vinuesa, Örlü \&
+  Schlatter]{bobke2017}
+{\sc \au{Bobke, A.}, \au{Vinuesa, R.}, \au{Örlü, R.} \& \au{Schlatter, P.}}
+  \yr{2017}  \at{History effects and near equilibrium in
+  adverse-pressure-gradient turbulent boundary layers}.  \jt{J.~Fluid Mech.}
+  \bvol{820},  \pg{667–692}.
+
+\bibitem[Castillo {\em et~al.\/}(2004)Castillo, Wang \& George]{Castillo_2004}
+{\sc \au{Castillo, L.}, \au{Wang, X.} \& \au{George, W.~K.}} \yr{2004}
+  \at{Separation criterion for turbulent boundary layers via similarity
+  analysis.}  \jt{J. Fluids Eng.}  \bvol{126}~(3),  \pg{297--304}.
+
+\bibitem[Chandran {\em et~al.\/}(2017)Chandran, Baidya, Monty \&
+  Marusic]{chandran_jfm_rapids_2017}
+{\sc \au{Chandran, D.}, \au{Baidya, R.}, \au{Monty, J.~P.} \& \au{Marusic, I.}}
+  \yr{2017}  \at{Two-dimensional energy spectra in high-reynolds-number
+  turbulent boundary layers}.  \jt{J.~Fluid Mech.}  \bvol{826},  \pg{R1}.
+
+\bibitem[Chevalier {\em et~al.\/}(2007)Chevalier, Schlatter, Lundbladh \&
+  Henningson]{simson_techrep}
+{\sc \au{Chevalier, M.}, \au{Schlatter, P.}, \au{Lundbladh, A.} \&
+  \au{Henningson, D.~S.}} \yr{2007}  \bt{A pseudo-spectral solver for
+  incompressible boundary layer flows.} {\em Tech. Rep.\/}.  \org{TRITA-MEK.
+  Stockholm}.
+
+\bibitem[Clauser(1954)]{Clauser_1954_exp}
+{\sc \au{Clauser, F.~H.}} \yr{1954}  \at{Turbulent boundary layers in adverse
+  pressure gradients}.  \jt{J. Aeronaut. Sci.}  \bvol{21}~(2),  \pg{91--108}.
+
+\bibitem[Clauser(1956)]{Clauser_1956}
+{\sc \au{Clauser, F.~H.}} \yr{1956}  \at{The turbulent boundary layer}.
+  \jt{Adv. Appl. Mech.}  \bvol{4}~(2),  \pg{1--51}.
+
+\bibitem[Deshpande {\em et~al.\/}(2021)Deshpande, Monty \&
+  Marusic]{deshpande_2021}
+{\sc \au{Deshpande, R.}, \au{Monty, J.~P.} \& \au{Marusic, I.}} \yr{2021}
+  \at{Active and inactive components of the streamwise velocity in wall-bounded
+  turbulence}.  \jt{J.~Fluid Mech.}  \bvol{914},  \pg{A5}.
+
+\bibitem[Eitel-Amor {\em et~al.\/}(2014)Eitel-Amor, Örlü \&
+  Schlatter]{E-AmorZPG}
+{\sc \au{Eitel-Amor, G.}, \au{Örlü, R} \& \au{Schlatter, P.}} \yr{2014}
+  \at{Simulation and validation of a spatially evolving turbulent boundary
+  layer up to ${Re}_{\theta}=8300$}.  \jt{Int. J. Heat Fluid Flow}  \bvol{47},
+  \pg{57--69}.
+
+\bibitem[Gibis {\em et~al.\/}(2019)Gibis, Wenzel, Kloker \& Rist]{Gibis2019}
+{\sc \au{Gibis, T.}, \au{Wenzel, C.}, \au{Kloker, M.} \& \au{Rist, U.}}
+  \yr{2019}  \at{Self-similar compressible turbulent boundary layers with
+  pressure gradients. p 2. {Self-similarity} analysis of the outer layer.}
+  \jt{J.~Fluid Mech.}  \bvol{880},  \pg{284--325}.
+
+\bibitem[de~Giovanetti {\em et~al.\/}(2016)de~Giovanetti, Hwang \&
+  Choi]{giovanetti2016}
+{\sc \au{de~Giovanetti, M.}, \au{Hwang, Y.} \& \au{Choi, H.}} \yr{2016}
+  \at{Skin-friction generation by attached eddies in turbulent channel flow}.
+  \jt{J.~Fluid Mech.}  \bvol{808},  \pg{511–538}.
+
+\bibitem[Griffin {\em et~al.\/}(2021)Griffin, Fu \&
+  Moin]{d99_determination_2020}
+{\sc \au{Griffin, K.~P.}, \au{Fu, L.} \& \au{Moin, P.}} \yr{2021}  \at{General
+  method for determining the boundary layer thickness in nonequilibrium flows}.
+   \jt{Phys. Rev. Fluids}  \bvol{6},  \pg{024608}.
+
+\bibitem[Gungor {\em et~al.\/}(2017)Gungor, Maciel, Simens \&
+  Gungor]{Gungor_DNS_2017}
+{\sc \au{Gungor, A.~G.}, \au{Maciel, Y.}, \au{Simens, M.~P.} \& \au{Gungor,
+  T.}} \yr{2017}  \bt{Direct numerical simulation of a non-equilibrium adverse
+  pressure gradient boundary layer up to ${Re}_{\theta}=8000$}.
+
+\bibitem[Harun {\em et~al.\/}(2013)Harun, Monty, Mathis \&
+  Marusic]{harun_monty_2013}
+{\sc \au{Harun, Z.}, \au{Monty, J.~P.}, \au{Mathis, R.} \& \au{Marusic, I.}}
+  \yr{2013}  \at{Pressure gradient effects on the large-scale structure of
+  turbulent boundary layers}.  \jt{J.~Fluid Mech.}  \bvol{715},
+  \pg{477–498}.
+
+\bibitem[Hiroyuki(2019)]{Abe_2019}
+{\sc \au{Hiroyuki, A.}} \yr{2019}  \at{Direct numerical simulation of a
+  turbulent boundary layer with separation and reattachment over a range of
+  reynolds numbers}.  \jt{Fluid Dyn. Res.}  \bvol{51}~(1),  \pg{011409}.
+
+\bibitem[Hoyas \& Jiménez(2006)]{Hoyas_PoF2006}
+{\sc \au{Hoyas, S.} \& \au{Jiménez, J.}} \yr{2006}  \at{Scaling of the
+  velocity fluctuations in turbulent channels up to ${Re}_{\tau}=2003$}.
+  \jt{Phys. Fluids}  \bvol{18}~(1),  \pg{011702}.
+
+\bibitem[Kitsios {\em et~al.\/}(2016)Kitsios, Atkinson, Sillero, Borrell,
+  Gungor, Jiménez \& Soria]{Kitsios2016}
+{\sc \au{Kitsios, V.}, \au{Atkinson, C.}, \au{Sillero, J.A.}, \au{Borrell, G.},
+  \au{Gungor, A.G.}, \au{Jiménez, J.} \& \au{Soria, J.}} \yr{2016}  \at{Direct
+  numerical simulation of a self-similar adverse pressure gradient turbulent
+  boundary layer}.  \jt{Int. J. Heat Fluid Flow}  \bvol{61},  \pg{129--136}.
+
+\bibitem[Kitsios {\em et~al.\/}(2017)Kitsios, Sekimoto, Atkinson, Sillero,
+  Borrell, Gungor, Jiménez \& Soria]{Kitsios2017}
+{\sc \au{Kitsios, V.}, \au{Sekimoto, A.}, \au{Atkinson, C.}, \au{Sillero,
+  J.~A.}, \au{Borrell, G.}, \au{Gungor, A.~G.}, \au{Jiménez, J.} \& \au{Soria,
+  J.}} \yr{2017}  \at{Direct numerical simulation of a self-similar adverse
+  pressure gradient turbulent boundary layer at the verge of separation}.
+  \jt{J.~Fluid Mech.}  \bvol{829},  \pg{392–419}.
+
+\bibitem[Marusic {\em et~al.\/}(2015)Marusic, Chauhan, Kulandaivelu \&
+  Hutchins]{marusic_2015}
+{\sc \au{Marusic, I.}, \au{Chauhan, K.~A.}, \au{Kulandaivelu, V.} \&
+  \au{Hutchins, N.}} \yr{2015}  \at{Evolution of zero-pressure-gradient
+  boundary layers from different tripping conditions}.  \jt{J.~Fluid Mech.}
+  \bvol{783},  \pg{379–411}.
+
+\bibitem[Marusic {\em et~al.\/}(2010)Marusic, McKeon, Monkewitz, Nagib, Smits
+  \& Sreenivasan]{Marusic_PoF_2010}
+{\sc \au{Marusic, I.}, \au{McKeon, B.~J.}, \au{Monkewitz, P.~A.}, \au{Nagib,
+  H.~M.}, \au{Smits, A.~J.} \& \au{Sreenivasan, K.~R.}} \yr{2010}
+  \at{Wall-bounded turbulent flows at high {Reynolds} numbers: {Recent}
+  advances and key issues}.  \jt{Phys. Fluids}  \bvol{22}~(6),  \pg{065103}.
+
+\bibitem[Marusic {\em et~al.\/}(1997)Marusic, Uddin \& Perry]{Marusic_1997_ZPG}
+{\sc \au{Marusic, I.}, \au{Uddin, A. K.~M.} \& \au{Perry, A.~E.}} \yr{1997}
+  \at{Similarity law for the streamwise turbulence intensity in
+  zero-pressure-gradient turbulent boundary layers}.  \jt{Physics of Fluids}
+  \bvol{9}~(12),  \pg{3718--3726},  \arxiv{arXiv:
+  https://doi.org/10.1063/1.869509}.
+
+\bibitem[Mellor \& Gibson(1966)]{mellor_gibson_1966}
+{\sc \au{Mellor, G.~L.} \& \au{Gibson, D.~M.}} \yr{1966}  \at{Equilibrium
+  turbulent boundary layers}.  \jt{J.~Fluid Mech.}  \bvol{24}~(2),
+  \pg{225–253}.
+
+\bibitem[Monty {\em et~al.\/}(2011)Monty, Harun \& Marusic]{MONTY2011}
+{\sc \au{Monty, J.P.}, \au{Harun, Z.} \& \au{Marusic, I.}} \yr{2011}  \at{A
+  parametric study of adverse pressure gradient turbulent boundary layers}.
+  \jt{Int. J. Heat Fluid Flow}  \bvol{32}~(3),  \pg{575--585}.
+
+\bibitem[Narasimha \& Sreenivasan(1973)]{narasimha_sreenivasan_1973}
+{\sc \au{Narasimha, R.} \& \au{Sreenivasan, K.~R.}} \yr{1973}
+  \at{Relaminarization in highly accelerated turbulent boundary layers}.
+  \jt{J.~Fluid Mech.}  \bvol{61}~(3),  \pg{417–447}.
+
+\bibitem[Negi {\em et~al.\/}(2018)Negi, Vinuesa, Hanifi, Schlatter \&
+  Henningson]{NEGI_2018}
+{\sc \au{Negi, P.S.}, \au{Vinuesa, R.}, \au{Hanifi, A.}, \au{Schlatter, P.} \&
+  \au{Henningson, D.S.}} \yr{2018}  \at{Unsteady aerodynamic effects in
+  small-amplitude pitch oscillations of an airfoil}.  \jt{"Int. J. Heat Fluid
+  Flow"}  \bvol{71},  \pg{378--391}.
+
+\bibitem[Nordström {\em et~al.\/}(1999)Nordström, Nordin \&
+  Henningson]{SIMSON_fringe}
+{\sc \au{Nordström, J.}, \au{Nordin, N.} \& \au{Henningson, D.}} \yr{1999}
+  \at{The fringe region technique and the {Fourier} method used in the direct
+  numerical simulation of spatially evolving viscous flows}.  \jt{SIAM J. Sci.
+  Comput.}  \bvol{20},  \pg{1365--1393}.
+
+\bibitem[Rotta(1950)]{rotta1950theorie}
+{\sc \au{Rotta, J.C.}} \yr{1950} {\em {\"U}ber die Theorie der turbulenten
+  Grenzschichten\/}. {\em Mitteilungen aus dem Max-Planck-Institut f{\"u}r
+  Str{\"o}mungsforschung\/} .  \publ{Max-Planck-Institut f.
+  Str{\"o}mungsforschung}.
+
+\bibitem[Rotta(1962)]{rotta1962turbulent}
+{\sc \au{Rotta, J.C.}} \yr{1962} {\em Turbulent boundary layers in
+  incompressible flow\/}.  \publ{Pergamon Press}.
+
+\bibitem[Sanmiguel~Vila {\em et~al.\/}(2020)Sanmiguel~Vila, Vinuesa, Discetti,
+  Ianiro, Schlatter \& \"Orl\"u]{Sanmiguel_PRF}
+{\sc \au{Sanmiguel~Vila, C.}, \au{Vinuesa, R.}, \au{Discetti, S.}, \au{Ianiro,
+  A.}, \au{Schlatter, P.} \& \au{\"Orl\"u, R.}} \yr{2020}  \at{Separating
+  adverse-pressure-gradient and reynolds-number effects in turbulent boundary
+  layers}.  \jt{Phys. Rev. Fluids}  \bvol{5},  \pg{064609}.
+
+\bibitem[{Sanmiguel Vila} {\em et~al.\/}(2020){Sanmiguel Vila}, Vinuesa,
+  Discetti, Ianiro, Schlatter \& Örlü]{MTL_expSANMIGUEL}
+{\sc \au{{Sanmiguel Vila}, C.}, \au{Vinuesa, R.}, \au{Discetti, S.},
+  \au{Ianiro, A.}, \au{Schlatter, P.} \& \au{Örlü, R.}} \yr{2020}
+  \at{Experimental realisation of near-equilibrium adverse-pressure-gradient
+  turbulent boundary layers}.  \jt{Exp. Therm. Fluid Sci.}  \bvol{112},
+  \pg{109975}.
+
+\bibitem[Schlatter {\em et~al.\/}(2010)Schlatter, Li, Brethouwer, Johansson \&
+  Henningson]{Schlatter_etAl_LES_2010}
+{\sc \au{Schlatter, P.}, \au{Li, Q.}, \au{Brethouwer, G.}, \au{Johansson,
+  A.~V.} \& \au{Henningson, D.~S.}} \yr{2010}  \at{Simulations of spatially
+  evolving turbulent boundary layers up to ${Re}_{\theta}=4300$}.  \jt{Int. J.
+  Heat Fluid Flow}  \bvol{31}~(3),  \pg{251--261}, sixth International
+  Symposium on Turbulence and Shear Flow Phenomena.
+
+\bibitem[Schlatter {\em et~al.\/}(2004)Schlatter, Stolz \&
+  Kleiser]{Schlatter_2004}
+{\sc \au{Schlatter, P.}, \au{Stolz, S.} \& \au{Kleiser, L.}} \yr{2004}
+  \at{{LES} of transitional flows using the approximate deconvolution model}.
+  \jt{Int. J. Heat Fluid Flow}  \bvol{25}~(3),  \pg{549--558}.
+
+\bibitem[Schlatter \& Örlü(2010)]{schlatter_orlu_2010}
+{\sc \au{Schlatter, P.} \& \au{Örlü, R.}} \yr{2010}  \at{Assessment of direct
+  numerical simulation data of turbulent boundary layers}.  \jt{J.~Fluid Mech.}
+   \bvol{659},  \pg{116–126}.
+
+\bibitem[Schlatter \& Örlü(2012)]{schlatter_orlu_2012}
+{\sc \au{Schlatter, P.} \& \au{Örlü, R.}} \yr{2012}  \at{Turbulent boundary
+  layers at moderate {Reynolds} numbers: inflow length and tripping effects}.
+  \jt{J.~Fluid Mech.}  \bvol{710},  \pg{5–34}.
+
+\bibitem[Sillero {\em et~al.\/}(2011)Sillero, Jim{\'{e}}nez, Moser \&
+  Malaya]{Sillero_2011}
+{\sc \au{Sillero, J.}, \au{Jim{\'{e}}nez, J.}, \au{Moser, R.~D.} \& \au{Malaya,
+  N.~P.}} \yr{2011}  \at{Direct simulation of a zero-pressure-gradient
+  turbulent boundary layer up to ${Re}_{\theta}= 6650$}.  \jt{J. Phys. Conf.
+  Ser.}  \bvol{318}~(2),  \pg{022023}.
+
+\bibitem[Sillero {\em et~al.\/}(2013)Sillero, Jiménez \&
+  Moser]{Sillero_2013pof}
+{\sc \au{Sillero, J.~A.}, \au{Jiménez, J.} \& \au{Moser, Robert~D.}} \yr{2013}
+   \at{One-point statistics for turbulent wall-bounded flows at reynolds
+  numbers up to $\delta^+ \approx 2000$}.  \jt{Phys. Fluids}  \bvol{25}~(10),
+  \pg{105102}.
+
+\bibitem[Skåre \& Krogstad(1994)]{skare_krogstad_1994}
+{\sc \au{Skåre, P.~E.} \& \au{Krogstad, P.}} \yr{1994}  \at{A turbulent
+  equilibrium boundary layer near separation}.  \jt{J.~Fluid Mech.}
+  \bvol{272},  \pg{319–348}.
+
+\bibitem[Tanarro {\em et~al.\/}(2020)Tanarro, Vinuesa \&
+  Schlatter]{tanarro_2020}
+{\sc \au{Tanarro, Á.}, \au{Vinuesa, R.} \& \au{Schlatter, P.}} \yr{2020}
+  \at{Effect of adverse pressure gradients on turbulent wing boundary layers}.
+  \jt{J.~Fluid Mech.}  \bvol{883},  \pg{A8}.
+
+\bibitem[Townsend(1956{\natexlab{{\em a\/}}})]{townsend_1956_eqBL}
+{\sc \au{Townsend, A.~A.}} \yr{1956{\natexlab{{\em a\/}}}}  \at{The properties
+  of equilibrium boundary layers}.  \jt{J.~Fluid Mech.}  \bvol{1}~(6),
+  \pg{561–573}.
+
+\bibitem[Townsend(1956{\natexlab{{\em b\/}}})]{Townsend_1956_structure}
+{\sc \au{Townsend, A.~A.}} \yr{1956{\natexlab{{\em b\/}}}}  \at{The structure
+  of turbulent shear flow.}  \jt{J.~Fluid Mech.}  \bvol{1}~(5),
+  \pg{554–560}.
+
+\bibitem[Townsend(1961)]{townsend_1961}
+{\sc \au{Townsend, A.~A.}} \yr{1961}  \at{Equilibrium layers and wall
+  turbulence}.  \jt{J.~Fluid Mech.}  \bvol{11}~(1),  \pg{97–120}.
+
+\bibitem[Townsend(1976)]{Townsend_1976}
+{\sc \au{Townsend, A.~A.}} \yr{1976} {\em The Structure of Turbulent Shear
+  Flow. 2nd Edition.\/}.  \publ{Cambridge University Press}.
+
+\bibitem[Vinuesa {\em et~al.\/}(2016{\natexlab{{\em a\/}}})Vinuesa, Bobke,
+  Örlü \& Schlatter]{diagnostic_Vinuesa}
+{\sc \au{Vinuesa, R.}, \au{Bobke, A.}, \au{Örlü, R.} \& \au{Schlatter, P.}}
+  \yr{2016{\natexlab{{\em a\/}}}}  \at{On determining characteristic length
+  scales in pressure-gradient turbulent boundary layers}.  \jt{Phys. Fluids}
+  \bvol{28}~(5),  \pg{055101}.
+
+\bibitem[Vinuesa {\em et~al.\/}(2018)Vinuesa, Negi, Atzori, Hanifi, Henningson
+  \& Schlatter]{VINUESA2018}
+{\sc \au{Vinuesa, R.}, \au{Negi, P.S.}, \au{Atzori, M.}, \au{Hanifi, A.},
+  \au{Henningson, D.S.} \& \au{Schlatter, P.}} \yr{2018}  \at{Turbulent
+  boundary layers around wing sections up to ${Re_c}=1,000,000$}.  \jt{Int. J.
+  Heat Fluid Flow}  \bvol{72},  \pg{86--99}.
+
+\bibitem[Vinuesa {\em et~al.\/}(2017)Vinuesa, \"Orl\"u, Sanmiguel~Vila, Ianiro,
+  Discetti \& Schlatter]{Vinuesa_2017}
+{\sc \au{Vinuesa, R.}, \au{\"Orl\"u, R.}, \au{Sanmiguel~Vila, C.}, \au{Ianiro,
+  A.}, \au{Discetti, S.} \& \au{Schlatter, P.}} \yr{2017}  \at{Revisiting
+  history effects in adverse-pressure-gradient turbulent boundary layers}.
+  \jt{Flow Turbul. Combust.}  \bvol{99},  \pg{565--587}.
+
+\bibitem[Vinuesa {\em et~al.\/}(2016{\natexlab{{\em b\/}}})Vinuesa, Prus,
+  Schlatter \& Nagib]{vinuesa2016_mec}
+{\sc \au{Vinuesa, R.}, \au{Prus, C.}, \au{Schlatter, P.} \& \au{Nagib, H.~M.}}
+  \yr{2016{\natexlab{{\em b\/}}}}  \at{Convergence of numerical simulations of
+  turbulent wall-bounded flows and mean cross-flow structure of rectangular
+  ducts}.  \jt{Meccanica}  \bvol{51},  \pg{3025--3042}.
+
+\bibitem[Zagarola \& Smits(1998)]{zagarola_smits}
+{\sc \au{Zagarola, M.~V.} \& \au{Smits, A.~J.}} \yr{1998} A new mean velocity
+  scaling for turbulent boundary layers.  \bt{In {\em Proc. of FEDSM'98\/}},
+  \pg{pp. 1--6}.  \publ{Washington, DC: ASME}.
+
+\bibitem[del Álamo {\em et~al.\/}(2004)del Álamo, Jiménez, Zandonade \&
+  Moser]{delAlamo_jfm_2004}
+{\sc \au{del Álamo, J.~C.}, \au{Jiménez, J.}, \au{Zandonade, P.} \&
+  \au{Moser, R.~D.}} \yr{2004}  \at{Scaling of the energy spectra of turbulent
+  channels}.  \jt{J.~Fluid Mech.}  \bvol{500},  \pg{135–144}.
+
+\bibitem[Örlü \& Schlatter(2013)]{Orlu_Schlatter_exp2013}
+{\sc \au{Örlü, R.} \& \au{Schlatter, P.}} \yr{2013}  \at{Comparison of
+  experiments and simulations for zero pressure gradient turbulent boundary
+  layers at moderate {Reynolds} numbers.}  \jt{Exp. Fluids}  \bvol{54},
+  \pg{1547}.
+
+\end{thebibliography}

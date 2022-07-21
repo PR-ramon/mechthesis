@@ -1,0 +1,21 @@
+% \section*{Appendix \hypertarget{AppB}{B}}\label{sec:AppendixB}
+\section*{Appendix B} \label{sec:AppendixB}
+
+Turbulent flows are characterised by fluctuations of the flow variables, which may have different amplitudes and frequencies, and are linked with a wide range of eddy structures of different spatial and temporal scales.
+
+As the TBL develops and the Reynolds number increases, the range of scales of the eddies grows, and a finer grid is needed to properly resolve all the scales. In this work, we implement a well-resolved LES which resolves the larger eddies in a suitable grid and a subgrid-scale (SGS) model is used to take into account the effects of the smaller scales. The SGS model used in this study is the approximate deconvolution model with a relaxation-term (ADM-RT), which is further documented in \cite{Schlatter_2004}. 
+This model does not involve an eddy viscosity, and it is based on filters applied on the equidistant grids in Fourier space and on the non-equidistant wall-normal direction. As stated in \cite{Schlatter_2004}, the model does not disturb the flow development as long as it is still sufficiently well resolved, otherwise it adds the additional necessary dissipation.
+The relaxation term can be seen as an SGS force of the form:
+\begin{equation*}
+    \frac{\partial \tau_{ij}}{\partial x_j} = \chi H_N * \overline{u}_i,
+\end{equation*}
+which is added to the right-hand side of the filtered Navier--Stokes equations.
+The coefficient $\chi=0.2$ is proportional to the inverse of the time step of the integration. The high-order filter $H_N$ uses a cutoff frequency $\omega_c \in (0, \pi]$ (in this simulation $\omega_c=2\pi/3$), which only affects the smallest scales. The filter is applied through a convolution (denoted by the symbol $*$) to the velocities $\overline{u}_i$. The velocities are marked with an overline to indicate that they are implicitly filtered because of the lower resolution of the LES grid.
+
+
+This SGS model has been compared with DNS simulations on multiple occasions: for transitional channel flow in \cite{Schlatter_2004}, for ZPG TBL in \cite{E-AmorZPG} and for turbulent wings in \cite{NEGI_2018}. The filter has been used in the APG cases by \cite{Bobke_2016, bobke2017}.
+\cite{E-AmorZPG} reports for $\Rey_{\tau}=3600$ , $87.2\%$ of the dissipation of the DNS being resolved by the LES, while the addition of the SGS contributed to recover $99.8\%$.
+
+
+
+ 
