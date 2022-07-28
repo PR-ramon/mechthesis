@@ -1,8 +1,27 @@
 % Insert HERE any additional commands
 
+% PRIMES IN EQUATIONS
+\newcommand*{\myprime}{^{\prime}\mkern-1.2mu}
+\newcommand*{\mydprime}{^{\prime\prime}\mkern-1.2mu}
+\newcommand*{\mytrprime}{^{\prime\prime\prime}\mkern-1.2mu}
+% COLORS FOR EQUATIONS:
+% \usepackage[usenames, dvipsnames]{color}
+\definecolor{myred1}{RGB}{255, 0, 0}
+\definecolor{myyellow1}{RGB}{255, 255, 219}
+\definecolor{mygreen1}{RGB}{0, 255, 0}
+\definecolor{mygreen2}{RGB}{0, 126, 0}
+\definecolor{myblue1}{RGB}{0, 0, 255}
+\definecolor{myorange1}{RGB}{255, 155, 0}
+
+
 % % Tikz commands
 \definecolor{magenta_1}{rgb}{0.64,0.08,0.18}
 \definecolor{yellow_1}{rgb}{0.93,0.69,0.13}
+\definecolor{magenta_1}{rgb}{0.64,0.08,0.18}
+\definecolor{yellow_1}{rgb}{0.93,0.69,0.13}
+\definecolor{lightOrange}{rgb}{0.9882, 0.8235, 0.6}
+\definecolor{lightGray}{rgb}{0.898, 0.882, 0.902}
+
 % tikz commands for lines in captions
 %\newcommand{\greenline}{\raisebox{2pt}{\tikz{\draw[-,black!40!green,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
 \newcommand{\blueline}  {\raisebox{2pt}{\tikz{\draw[-,blue,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
@@ -13,6 +32,9 @@
 \newcommand{\blackline} {\raisebox{2pt}{\tikz{\draw[-,black,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
 \newcommand{\magentaline} {\raisebox{2pt}{\tikz{\draw[-,magenta_1,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
 \newcommand{\yellowline} {\raisebox{2pt}{\tikz{\draw[-,yellow_1,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+
+\newcommand{\lightorangeline}{\raisebox{2pt}{\tikz{\draw[-,lightOrange,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
+\newcommand{\lightgrayline}{\raisebox{2pt}{\tikz{\draw[-,lightGray,solid,line width = 0.9pt](0,0) -- (5mm,0);}}}
 
 
 \newcommand{\bluedash} {\raisebox{2pt}{\tikz{\draw[-,blue ,dashed,line width = 0.9pt](0,0) -- (5mm,0);}}}

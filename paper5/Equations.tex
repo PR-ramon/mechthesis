@@ -1,0 +1,26 @@
+% ---------------------------------------------------
+% \section{Equations}
+\section{\label{sec:Equations} Equations }
+% ---------------------------------------------------
+
+% Total velocities
+\begin{equation}
+    \textcolor{black}{\pdv{u_i}{t} + u_k\pdv{u_i}{x_k} = - \pdv{p}{x_i} + \nu \pdv[2]{u_i}{x_k}}
+\end{equation}
+
+% RANS
+\begin{equation}
+    \textcolor{mygreen2}{\pdv{U_i}{t} + U_k\pdv{U_i}{x_k} + \pdv{\overline{u_i u_k}}{x_k} = - \pdv{P}{x_k} + \nu \pdv[2]{U_i}{x_k}}
+\end{equation}
+
+% Perturbations
+\begin{equation}
+    \textcolor{myorange1}{\pdv{u_i\myprime}{t} + 
+    U_k\pdv{u_i\myprime}{x_k} + u_k\myprime\pdv{u_i}{x_k} - \pdv{\overline{u_i\myprime u_k\myprime}}{x_k}  =
+    - \pdv{p\myprime}{x_i} + \nu \pdv[2]{u_k\myprime}{x_k}}
+\end{equation}
+
+% Frequency cutting
+\begin{equation}
+    u_i\myprime = u_i^L + u_i^S
+\end{equation}
