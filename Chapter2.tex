@@ -1,0 +1,414 @@
+% \begin{enumerate}
+%     \item Physical phenomena
+%     \begin{enumerate}
+%         \item Elements involved (fluid and solid)
+%         \item Properties of the elements that are meaningful for the problem
+%         \item Observations or experimental knowledge $\rightarrow$ effects observed
+%         \item New unseen problem $\rightarrow$ hypothesis of the effects to be observed
+%     \end{enumerate}
+    
+%     \item Abstraction of the problem at hand and the physics
+%     \begin{enumerate}
+%         \item Equations for the physics studied (mechanics, thermal?, chemical?)
+%         \item Mathematical model of the elements properties
+%         \item Outer factors or conditions
+%     \end{enumerate}
+%     \item Analytical solution or numerical discretization.
+%     \item Validation with experimental results
+% \end{enumerate}
+
+\graphicspath{{imgs/} {imgs/lam_turb} {imgs/spec}}
+
+\section{Observations and empirical knowledge}
+
+There are many examples of laminar and turbulent flows in nature that we are familiar with. In Fig.~\ref{fig:lam_turb} we show 3 examples, with water and flames. In the river image the water on the right side is laminar and on the left side it becomes turbulent. The calm flames of a candle rise initially in a laminar regime. On the bonfire example the flames are larger and show the different chaotic scale motions of a turbulent flow.
+
+\begin{figure}[h!]
+\centering
+% \captionsetup{width=0.99 \textwidth}
+\includegraphics[height=5cm ]{laminar_turbulent_1.jpg}
+% \includegraphics[width=5cm ]{llama_laminar.jpg}
+\includegraphics[height=5cm ]{velas.jpg}
+\includegraphics[height=5cm ]{llama_turb1.jpg}
+\caption{ \label{fig:lam_turb} Examples of ordered laminar flow and chaotic turbulent motions in water and fire.
+   }
+\end{figure}
+
+Laminar and turbulent regimes presents its advantages and disadvantages. 
+In aerodynamic applications we usually focus in minimizing the friction produced at the solid wall-boundary or maximizing the lift/drag coefficient. In that aspect, the laminar boundary layer produces less friction than a turbulent boundary layer because it alters less the flow.
+Detachment of the flow is an undesirable effect produced by strong adverse-pressure gradients, in this aspect, the laminar flow structure is more sensible to detachment under APG conditions than a turbulent flow.
+
+To study turbulent boundary layers (TBLs) and the effects of adverse pressure gradients (APG) we will compare APG TBLs with a TBL subjected to zero pressure gradient (ZPG) conditions. The case of favourable pressure gradients (FPGs) stabilizes and relaminarizes the boundary layer, and its effects are not critical such as those provoked by APGs, where the boundary layer can detach from the wall producing undesirable effects such as an increase in drag or even to loose the aerodynamic controls in airplanes.
+In order to study this kind of wall-attached fluid problem, first we should analyze the elements involved, such as the fluid and the solid elements.
+
+\section{Fluid properties}
+
+When studying the mechanics of a solid we track the positions, velocities and accelerations, forces and torques along its movement in space and time. This is the Lagrangian approach to mechanics.
+For a flow of particles or a fluid it is more interesting to observe the flow variables at specific locations and observe the temporal change of those variables at those locations. This is the Eulerian approach that will be used to study the mechanics of a fluid flow. 
+
+The main variables are the fluid velocities, $\vec{u}(\vec{x},t)=u_i=(u,v,w)$, and the pressure $p(\vec{x},t)$.
+To simplify the study of adverse pressure gradient turbulent boundary layers the fluid analysed is isotropic (its properties are the same in all directions) and Newtonian, this implies that the viscous forces are a linear function of the strain rate tensor $s_{ij}=\pdv{u_i}/{x_j}$. As an example, the friction at the wall is $\tau_w=\mu \pdv{u}/{y}$
+where $\mu$ is a constant factor, the dynamic viscosity.
+The density and viscosity of the fluid combines into the kinematic viscosity $\nu=\mu/\rho$ with units $[m^2/s]$ independent of the mass. 
+Since we consider the density and viscosity as constant and not affected by changes in temperature, the temperature of the fluid is not relevant and the energy and momentum evolution are decoupled.
+
+\section{Solid properties}
+In general, the solid boundaries are curved specially in aerodynamic applications where the curvatures are used to create differences in pressures that lead to forces in the desired directions. The forces in the direction of the inflow are called drag and the forces in the perpendicular direction is called lift. For curved boundaries, different coordinate systems are used. The local system of coordinates that changes with the solid boundary is where the surface forces are calculated. The surface forces are then projected onto the global coordinates associated with the inflow to obtain the lift and drag.
+For flat plates with zero angle of attack the global and local coordinates are the same.
+The surface of the flat plate that we study is rigid, and smooth, and no exchange of heat or mass is produced between the fluid and the solid. In the interface fluid/solid the only interaction is due to pressure and viscous forces that adapts the fluid velocity to the solid surface velocity.
+The flat plate will be considered to be static in the global system of coordinates.
+
+
+\section{Boundary layers}
+
+Boundary layers are regions inside a fluid flow where certain features or changes in the properties of the fluid are concentrated. Historically the first idea of boundary layer is set for the adaptation region of the fluid momentum from outer conditions to the dynamical conditions in a solid surface.
+Other boundary layers are for example thermal boundary layers where the focus is on the change of thermal properties.
+
+When we consider the flow around a solid object in an incompressible regime, the flow can detect the presence of the solid object and adapt its trajectory. The flow then surrounds the solid starting from the leading edge and close to the solid surface the boundary layer is the region where the velocity of the flow adapts from the solid surface velocity to the outer flow velocity. The boundary layer thickness have to be defined according to the main idea of a region of the fluid close to the solid wall that encloses the major viscous effects created due to the fluid/surface interaction. An obvious effect of the presence of a wall is that the streamwise velocity has to adapt from the velocity of the solid boundary to the exterior velocity, commonly called velocity at the infinity $U_{\infty}$. 
+In general, for a certain position of the wall, the velocity is measured in the wall-normal direction, obtaining a profile of streamwise velocities $u(y,t)$. Then $U_{\infty}=u(y\rightarrow \infty)$ is the unperturbed velocity and can change from one streamwise position to another.
+In the case of zero-pressure gradient boundary layers, $U_{\infty}$ is taken as constant, since in a steady flow in the absence of viscous forces, $\pdv{u}/{x}$ should be zero. 
+
+Since an obvious indicator of the boundary layer is the adaptation of the streamwise velocity, the boundary layer can be defined using this property and the $99\%$ thickness $\delta_{99}$ is defined as the wall-normal position where $u(y=\delta_{99}) = U_{\infty}$.
+In Fig.~\ref{fig:lam_turb_profiles} we show an example on how the mean streamwise velocity $U(y)$ adapts from the velocity at the wall $u(y=0)=0$, to the outer velocity $U_{\infty}$, which has been scaled to be equal to 1, on a laminar and a TBL ZPG profiles.
+
+\begin{figure}[h!]
+\centering
+% \captionsetup{width=0.99 \textwidth}
+\includegraphics[width=0.5\textwidth]{ZPG_lam_turb.jpg}
+\caption{ \label{fig:lam_turb_profiles} Mean streamwise velocity profile of a laminar (blue) and a turbulent ZPG (red) boundary layers.
+   }
+\end{figure}
+
+In the case of curved boundaries, the curvature induces a pressure-gradient since the incoming flow has to adapt to the curvature of the wall. In a flat plate, a pressure-gradient can be produced by controlling the exterior flow, usually the streamwise gradient of the streamwise velocity $\pdv{U_{\infty}}/{x}$
+
+
+\subsection{Turbulent boundary layers}
+The characteristics of a boundary layer changes radically depending on the laminar/turbulent regime.
+In a laminar boundary layer, any perturbation produces shear stresses and therefore, viscous forces, which are transported by the momentum of the flow and eventually dissipated by the viscous dissipation. 
+High energetic perturbations, flow configurations or certain viscosity/momentum forces ratios are unstable, implying a change of regime, usually from the laminar regime to turbulence. 
+The ratio between momentum and viscous forces is called Reynolds number $\Rey=U_{sc} L_{sc} / \nu$ and depending on the velocity scale $U_{sc}$ and the $L_{sc}$ chosen we would be analyzing different phenomena. The Reynolds number where a fluid configuration changes regime is called critical Reynolds number $\Rey_c$.
+Other Reynolds number examples: if $U_{sc}=U_{\infty}$ and $L_{sc}=c$ where $c$ is the chord of a NACA profile, then we are setting the global configuration of the problem. If we want to analyze a local phenomena such as the different size of the fluid scales close to the wall compared to the largest ones inside the TBL, then we can use the Reynolds number based on the friction velocity $\Rey_{\tau}=u_{\tau}\delta_{99}/\nu$, where  $u_{\tau}(x)=\sqrt{(\tau_w / \rho)}$.
+
+In the turbulent regime, the momentum and energy of the flow initiates a cascading effect breaking the initial ordered motions into chaotic submotions. 
+Eddies are generated that extract energy from the mean flow and are divided into smaller eddies. Then a transport of energy between large and small eddies is produced. Eddies are regions with strong shear stresses, therefore the viscous forces are stronger and produce a dissipation of the kinetic energy.
+The boundary layers studied here are momentum boundary layers that confine the turbulent perturbations and mayor viscous effects produced because of the presence of a solid boundary.
+
+In a turbulent boundary layer, the thickness of the boundary layer should capture both the effects of the viscous forces as well as the turbulent fluctuations produced because of the presence of a solid boundary, leading to different definitions for the boundary layer thickness.
+
+For laminar BLs and ZPG TBLs, the previous $\delta_{99}$ thickness, where the mean velocity of the flow is $99\%$ of the exterior velocity, is valid and is based only on the adaptation of the mean streamwise velocity to that of the outer flow.
+
+For other TBLs with pressure gradients, the outer velocity can have gradients in the streamwise and wall-normal directions even without the presence of turbulence. In this case we can use an approach based on the level of turbulence such as the one used in \cite{diagnostic_Vinuesa} where the boundary layer thickness is such that it captures the turbulence up to certain turbulent level.
+This approach is useful for the dataset that we use, since the turbulent levels outside of the TBL are minimal, both in the simulations \citep{E-AmorZPG, bobke2017, Pozuelo_JFM_22}, as in the experimental databases \citep{Sanmiguel_PRF}.
+If the outer flow turbulent level is high, the method in \cite{diagnostic_Vinuesa} is not applicable. 
+Other methods have been proposed in the literature and a review was given in \cite{d99_determination_2020}.
+
+Turbulence presents a wide range of motions, the way we have been able to study and characterize turbulence is through decomposition of those characteristics. 
+The first approach is an statistical characterization where we can divide the fluid variables into a mean or average value and a perturbation, this is known as the Reynolds decomposition \citep{Rey_decomp}.
+The fluctuating character of the flow is shown for a flat plate APG TBL in Fig.~\ref{fig:lam_turb_development} where we show contour levels in snapshots of the instantaneous streamwise velocity. The contours in Fig.~\ref{fig:lam_turb_development}(a) are smooth and show a well-defined laminar behaviour with small perturbations introduced to trigger turbulence. In Fig.~\ref{fig:lam_turb_development}(b) the turbulence is totally developed It can be seen how at different streamwise positions $x/\delta^*_0$ the outer velocity or "edge velocity" $U_e$ decreases along $x$ to obtain an APG. The edge velocity is the velocity of the TBL at $y=\delta_{99}$ and depends on the method used to determine the boundary layer thickness.
+
+\begin{figure}[h!]
+\centering
+% \captionsetup{width=0.99 \textwidth}
+\includegraphics[width=0.49\textwidth ]{APG_laminar.jpg}
+\includegraphics[width=0.49\textwidth]{APG_turb.jpg}
+\caption{ \label{fig:lam_turb_development} Snapshot of the streamwise velocity $u(\vec(x), t)$ in a laminar (a) and a turbulent APG (b), boundary layers.
+   }
+\end{figure}
+
+
+
+\section{Mathemathical analysis}
+
+For an incompressible flow the conservation of mass in a control volume becomes the differential continuity equation (Eq.~\ref{eq:continuity_cap2}),
+
+% Continuity
+\begin{equation}
+\label{eq:continuity_cap2}
+% \overrightarrow{u}
+    \nabla \cdot \vec{u} = \partial_i u_i = 
+    \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} = 0,
+\end{equation}
+which is shown as the divergence of the velocity vector, the diadic and components notations.
+
+To describe the time evolution of the fluid variables, the partial differential equations in Eq.~\ref{eq:NS_cap2} are the Navier--Stokes (NS) equations that describes the evolution of the momentum of the fluid as a function of the pressure gradient and viscous forces acting on it. The system of equations composed by Eqs.~\ref{eq:continuity_cap2} and \ref{eq:NS_cap2} are able to give both laminar and turbulent flow regimes, depending on the configuration of the problem.
+
+% NS Total velocities
+\begin{equation}
+    \label{eq:NS_cap2}
+    \frac {\partial u_i} {\partial t}  + u_j \frac {\partial u_i} {\partial x_j} =
+    \frac {-1} {\rho} \frac {\partial p} {\partial x_i} +  \nu \frac {\partial^2 u_i} {\partial x_j^2}.
+\end{equation}
+
+By giving the correct scenario which is the boundary conditions (BCs) composed by an inflow, outflow, outer flow and wall-boundary conditions, together with an initial state of the system, we can expect either laminar flow or the change into a turbulent flow.
+
+
+
+Once turbulence is fully-developed, the statistical approach to turbulence is based on the Reynolds decomposition \citep{Rey_decomp}, given in Eq.~\ref{eq:Rey_decomp}. This decomposition is based on a constant or averaged component and a fluctuating component in a way that once they are inputted into Eqs.~\ref{eq:continuity_cap2} and \ref{eq:NS_cap2} some of the partial differentials are simplified. An example is to use a constant base flow (such as the laminar state) plus a fluctuating flow field, this is the case used to study transition and stability of BLs. 
+For our case, the mean flow $U_i$ is an average in time and the homogeneous directions. The average in a dimension $d$ is marked as $\langle . \rangle_d$, and the average in time and all the homogeneous dimensions is marked with $\overline{(.)}$. The mean velocity is $U_i = \overline{u_i} =\langle \langle u_i \rangle_z \rangle_t$ and as a result of Eq.~\ref{eq:Rey_decomp}, $\overline{u_i\myprime}=0$. Note that $\langle u_i\myprime \rangle_z (t) \neq 0$ and $\langle u_i\myprime \rangle_t(z) \neq 0$. 
+
+Introducing the flow decomposition (Eq.~\ref{eq:Rey_decomp}) into the continuity and NS equations (Eqs.~\ref{eq:continuity_cap2} $\&$ \ref{eq:NS_cap2}), and using the total average in time and $z$, we see that the continuity equation is fulfilled for both the mean and the fluctuating component separately (Eq.~.\ref{eq:cont_decomp}). And in the NS equation we obtain the Reynolds Averaged Navier--Stokes equation (RANS) in Eq.~\ref{eq:RANS_cap2} and the equation for the time evolution of the perturbations Eq.~\ref{eq:pertub_cap2} as a result of substracting the RANS equations from the general NS equations.
+
+% R Decomposition
+\begin{equation}
+    \label{eq:Rey_decomp}
+    u_i = U_i + u_i\myprime.
+\end{equation}
+
+\begin{equation}
+    \label{eq:cont_decomp}
+    \partial_i \overline{u_i} = \partial_i \overline{U_i} = 0 ~~~~
+    \partial_i \overline{U_i} + \partial_i \overline{u_i\myprime} = 0.  
+\end{equation}
+
+% RANS
+\begin{equation}
+    \label{eq:RANS_cap2}
+    U_k\pdv{U_i}{x_k} + \pdv{\overline{u_i\myprime u_k\myprime}}{x_k} = \frac {-1} {\rho} \frac {\partial P}{\partial x_i} + \nu  \frac {\partial^2 U_k} {\partial x_k^2}.
+\end{equation}
+
+% Perturbations
+\begin{equation}
+    \label{eq:pertub_cap2}
+    {\pdv{u_i\myprime}{t} + 
+    U_k\pdv{u_i\myprime}{x_k} + u_k\myprime\pdv{u_i}{x_k} - \pdv{\overline{u_i\myprime u_k\myprime}}{x_k}  =
+    \frac {-1} {\rho} \pdv{p\myprime}{x_i} + \nu  \frac {\partial^2 u_k\myprime} {\partial x_k^2}    }.
+\end{equation}
+
+Note that the RANS equation are similar to the NS equation, except that for the time derivative which is zero and an aditional term $\pdv{\overline{u_i\myprime u_k\myprime}}/{x_k}$ which can be included within the divergence of the viscous forces term, for that reason the terms $\rho \overline{u_i\myprime u_k\myprime}$ are called Reynolds-stresses. In the following, since the density is considered as constant, we will refer as Reynolds-stress (RS) to the terms in the tensor $\overline{u_i\myprime u_k\myprime}$, wich are also known as the variance or covariance of the total velocities $u_i$, $u_k$.
+From the RANS equations it is interesting to see the mean velocities and the RS terms since they are an indicative of the level of turbulence and how it is affected by the pressure gradients and viscous forces on the right hand side (RHS) of the equation.
+
+The equation for the perturbation velocities is useful since we can multiply by another perturbation velocity such as $u_{j}\myprime \cdot \left( \pdv{u_{i}\myprime}{t} + ... \right) $ or obtain the two-point correlation $\mathcal{R}_{u_i\myprime u_j\myprime}$ through the correlation denoted with the symbol $(\cdot \star \cdot)$ as in $ u_{i}\myprime \star \left( \pdv{u_{j}\myprime}{t} + ... \right)$. The former gives the Reynolds-stress transport equations (Eq.~\ref{eq:RS_transport_cap2}) where the turbulent kinetic energy budgets are a special case. The latter is used as in \cite{lee_moser_2019}, to obtain the power spectral density of each term of the Reynolds-stress transport equations.
+
+Denoting Eq.~\ref{eq:NS_cap2} as $\mathrm{TOT}_i$, Eq.~\ref{eq:RANS_cap2} as $\mathrm{RANS}_i$ and Eq.~\ref{eq:RS_transport_cap2} as $\mathrm{PERT}_i$, the evolution equation for the total kinetic energy of the flow can be obtained through the multiplication,
+% $\mathrm{KE} = (1/2) \overline{u_i \cdot \mathrm{TOT}_i}$, 
+\begin{equation}
+    \mathrm{KE} = (1/2) \overline{u_i \cdot \mathrm{TOT}_i}, 
+\end{equation}
+while the mean kinetic energy equation can be obtained with 
+% $\mathrm{MKE} = (1/2) U_i \cdot \mathrm{RANS}_i$,
+\begin{equation}
+    \mathrm{MKE} = (1/2) U_i \cdot \mathrm{RANS}_i,
+\end{equation}
+and the turbulent kinetic energy equation with 
+% $\mathrm{TKE} = (1/2) \overline{u_i\myprime \cdot \mathrm{PERT}_i} = KE - MKE$.
+\begin{equation}
+    \mathrm{TKE} = (1/2) \overline{u_i\myprime \cdot \mathrm{PERT}_i} = KE - MKE.
+\end{equation}
+In a similar way the Reynolds-stress transport ($RST_{ij}$) equation Eq.~\ref{eq:RS_transport_cap2} can be obtained by doing 
+% $\mathrm{RS}_{ij} = \overline{u_i\myprime \cdot \mathrm{PERT_j} + u_j\myprime \cdot \mathrm{PERT_i}} $
+\begin{multline}
+    \mathrm{RST}_{ij} = \overline{u_i\myprime \cdot \mathrm{PERT_j} + u_j\myprime \cdot \mathrm{PERT_i}} = \\
+    = \overline{u_i \cdot \mathrm{TOT_j} + u_j \cdot \mathrm{TOT_i}} - (U_i \cdot \mathrm{RANS}_j + U_j \cdot \mathrm{RANS}_i ) .
+\end{multline}
+% $\mathrm{RS}_{ij} = \overline{u_i \cdot \mathrm{TOT_j} + u_j \cdot \mathrm{TOT_i}} - (U_i \cdot \mathrm{RANS}_j + U_j \cdot \mathrm{RANS}_i )$.
+% \begin{equation}
+%     \mathrm{RS}_{ij} = \overline{u_i \cdot \mathrm{TOT_j} + u_j \cdot \mathrm{TOT_i}} - (U_i \cdot \mathrm{RANS}_j + U_j \cdot \mathrm{RANS}_i ) .
+% \end{equation}
+
+% RS transport equation
+\begin{multline}
+    \label{eq:RS_transport_cap2}
+    \pdv{\overline{u_i\myprime u_j\myprime}}{t} + 
+    U_k\pdv{\overline{u_i\myprime u_j\myprime}}{x_k} + 
+    \left(
+    \overline{u_i\myprime u_k\myprime}\pdv{U_j}{x_k} + \overline{u_j\myprime u_k\myprime}\pdv{U_i}{x_k}
+    \right) +
+    \left(
+    \overline{u_i\myprime \pdv{u_j\myprime}{x_k} u_k\myprime} + \overline{\pdv{u_i\myprime}{x_k} u_j\myprime u_k\myprime}
+    \right)
+    = \\ 
+    - \left( \overline{
+    u_j\myprime \pdv{p\myprime}{x_i} + u_i\myprime \pdv{p\myprime}{x_j}
+    } \right) 
+    + \nu \frac{\partial^2 \overline{u_i\myprime u_j\myprime}}{\partial x_k^2} 
+    - 2\nu \overline{\pdv{u_i\myprime}{x_k} \pdv{u_j\myprime}{x_k}}
+\end{multline}
+
+The third term in Eq.~\ref{eq:RS_transport_cap2} is specially interesting, after some manipulation, that term appears in the transport of $U_iU_j$ and the transport of $\overline{u_i\myprime u_j\myprime}$ with different signs. Usually is written on the right hand side of the equation and is called ``Production" since it substract energy from the mean flow and adds into the perturbations.
+The other terms are presented in Appendix B from \textbf{Paper 1}.
+
+
+\section{Turbulent Boundary layers under adverse pressure gradients}
+
+A wall-bounded flow can see pressure gradients as a result of the curvature of the wall, but also as a result of a change in the direction/velocity of the outer flow $(U_{e}, V_{e}, W_{e})$. Turbulence is already a complex problem in a ZPG case with the only parameter being the Reynolds number (momentum/viscous forces), if another parameter such as pressure gradients is added, the complexity of the problem increases and it becomes difficult to distinguish what phenomena is caused by the $\Rey$ effects or by the PG history of the flow.
+In order to properly study APG TBLs, first we should try to define a canonical simple case, that is a well-defined APG along the streamwise development of the TBL.
+To address this problem, different pressure-gradient parameters have been defined in literature, such as the Rotta-Clauser PG parameter $\beta$, or a general $\Lambda_{inc}$ which in \cite{Gibis2019} is studied with different length and velocity scales.
+In our simulations of moderate APG we use $\beta$ defined as
+\begin{equation}
+    \beta(x) = \frac{\delta^*}{\tau_w} \pdv{P}{x},
+\end{equation}
+where $\pdv{P}{x}$ is the averaged pressure-gradient, $\tau_w$ is the shear stress at the wall, and $\delta^*$ is the displacement thickness, which for an incompressible flow is defined as
+\begin{equation}
+    U_e \delta^* = \int_{0}^{\delta_{99}} (U_e - U) dy
+\end{equation}
+
+
+
+
+\subsection{Statistics}
+In \textbf{Paper 1} we explore the statistical quantities of TBLs under APGs. The novelty respect to the available literature was in the high fidelity database used for the ZPG and APG TBLs. Both simulations show the development of the TBL from low Reynolds numbers such as those of previous numerical databases, and reach large Reynolds numbers such as those obtained in experiments. This characteristic works as a bridge to validate previous simulations as well as the current simulations, since they have been compared successfully with experimental data.
+A benefit of numerical experiments is that the amount of quantities measured are larger than in experimental databases. This allows to have better measurements close to the wall and obtain decomposition such as spanwise spectra.
+
+In Fig.~\ref{fig:U_uu_cap2}(a) we show the inner scaled $U$ and $\sqrt{\overline{u\myprime u\myprime}}$ for a $\Rey_{\tau}=500$, where the low Reynolds number simulations are already fully developed, while the experimental database does not have measurements. A higher $\Rey_{\tau}=2000$ is required by the experiments to have a fully developed near-equilibrium APG, and the LES ZPG and the new b1.4 simulation are able to achieve those Reynolds numbers.
+The experimental data and b1.4 are in a similar range of $\beta$ and their statistics show a good agreement in the streamwise components.
+The effects of the APG in $U$ show a lower $U^+$ for larger $\beta$ in the logarithmic region, and a larger effect in the wake region. At higher Reynolds numbers, the logarithmic region enlarges and the near-equilibrium APG and the ZPG profiles get closer.
+In the turbulent perturbations, the near-wall or inner peak of $\sqrt{\overline{u\myprime u\myprime}}^+_{IP}$ grows in value with both the Reynolds number and the APG effects and its wall-normal position $y_{IP}^+$ seems to slightly increase with both APG and $\Rey$ effects. In \cite{Pozuelo_JFM_22} this trend is shown, where a filter was used to avoid saw-tooth jumps due to the wall-normal resolution close to the wall.
+Larger Reynolds numbers allows for larger scales to live in the logarithmic/wake region and for a separation of the scales to be seen. This is first seen as lower decay in $\sqrt{\overline{u\myprime u\myprime}}$ in the ZPG in the logarithmic/wake region and a development of an outer peak for APG profiles. Larger $\beta$ increase the value of the outer peak of $\sqrt{\overline{u\myprime u\myprime}}$. The trends for the outer peak value and wall-normal position of the RS,  $\overline{u\myprime u\myprime}_{OP}$ and $y_{OP}$ where analysed in \cite{Pozuelo_JFM_22}. 
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth]{imgs/stats/U_uu_a.eps}
+    \includegraphics[width=0.49\textwidth]{imgs/stats/U_uu_b.eps}
+    \caption{Mean streamwise $U$ (solid lines) and streamwise root mean square $u_{rms}$ or strandard deviation of the streamwise velocity (dashed lines). Wall-normal profiles taken at: (a) $\Rey_{\tau}=500$, (b) $\Rey_{\tau}=2100$. }
+    \label{fig:U_uu_cap2}
+\end{figure}
+
+\subsection{Spectral decomposition}
+To have a better understanding on the perturbations we can use some mathematical tools such as the decomposition of the spatial-temporal signal using correlations, orthogonal modes, coherent structures, etc.
+The use of orthogonal modes allows to decompose the energy of the perturbations into each mode in an unique way, so the sum of the energy contained in all the modes is equivalent to the total energy of the perturbations. 
+
+In signal analysis an orthogonal decomposition which is commonly used is the Fourier decomposition which enables to look for phenomena that repeats with a certain time or spatial frequency. The energy or power associated with each mode is called energy spectra (if the signal is finite such as pulses) or power spectra (if the signal is such as sinusoidal waves, whose domain and energy is not finite, however its power is). Remember that the power is the ratio of the energy over time, where the time goes to infinity (in the case of using temporal series).
+Since we are dealing with signals which are periodic in the homogeneous dimension $z$ and are not limited in time, we will use the terminology of power spectra (PS) instead of energy spectra. 
+The modes in $z$ have a wavenumber $k_z$ and a wavelength $\lambda_z=2\pi/L_z$ where $L_z$ is the spanwise period of the domain. The same analysis can be applied in time, where we will use $k_t$ and $\lambda_t$.
+For a signal $x(t)$, with $X(k_t)$ being its Fourier transform, the power of each mode is $|X(k_z)|^2$, the squared amplitude of the mode. For a perturbation velocity, the power can be calculated as,
+\begin{equation}
+    PS_{u_i\myprime u_j\myprime}(k_z) = \mathcal{F}(u_i \myprime)  \mathcal{F}^*(u_j \myprime),
+    \label{eq:power_sp}
+\end{equation}
+where $\mathcal{F}()$ is the Fourier transform and $\mathcal{F}^*()$ represents the complex conjugate and the definition has been expanded to include the power spectra of the quantity $\langle u_i\myprime u_j\myprime \rangle_{z}$, also known as cospectra.
+Using the properties of the Fourier transform, the multiplication in Fourier space represented in Eq.~\ref{eq:power_sp} represents the Fourier transform of the two-point correlation function $\mathcal{R}_{u_i\myprime, u_j\myprime}(\delta z)=u_i\myprime \star u_j\myprime$, where $\delta z$ is the lag or distance between the two points where we look for the correlation of their velocity perturbations. According to the Wiener--Khinchin theorem, we can calculate the PS through as the Fourier transform of $\mathcal{R}_{u_i\myprime, u_j\myprime}$ or from the power spectra throught the inverse Fourier transform $\mathcal{F}^{-1}()$ we can obtain the two-point correlation function.
+
+Note that for velocity perturbations, since Fourier modes are orthogonal, the sum of the PS for all the modes is equal to the averaged Reynolds stress,
+\begin{equation}
+    \langle u_i\myprime u_j\myprime \rangle_{z} = \sum_{k_z} PS_{u_i\myprime u_j\myprime}(k_z)
+\end{equation}
+
+This step can be performed for each time step and averaged over time to obtain $\langle\langle u_i\myprime u_j\myprime \rangle_{z}\rangle_{t} = \overline{u_i\myprime u_j\myprime}$ or it can also be the result of a 2D spectral decomposition in both time and $z$, where the sum extends to all the spatial and temporal modes.
+
+The PS is useful for discrete systems, and it is the first step when we calculate numerically the spectra of a the Reynolds-stresses. It is also interesting to see how the power spectra is distributed along the wavenumbers or the wavelengths, obtaining a power spectral density (PSD).
+The average in time of the PSD in wavenumbers is $\phi_{u_i\myprime u_j\myprime}=\langle PS \rangle_t/\mathrm{d} k_z$ while the average in time PSD in wavelengths is $\psi_{u_i\myprime u_j\myprime}= \langle PS \rangle_t/\mathrm{d} \lambda_z$. Both densities can be linked using $\mathrm{d}(\lambda_z) = \mathrm{d}(2\pi/k_z) = -2\pi\mathrm{d}k_z/k_z^2$:
+
+\begin{equation}
+    \psi_{u_i\myprime u_j\myprime} = 
+    \frac{ \langle PS_{u_i\myprime u_j\myprime} \rangle_t}{\mathrm{d} \lambda_z} =
+    -\frac{ \langle PS_{u_i\myprime u_j\myprime} \rangle_t}{\mathrm{d} k_z} \frac{k_z^2}{2\pi},
+\end{equation}
+where the minus sign is taking care by inverting the limits of integration to obtain the total RS (small to large wavenumbers is equivalent to integrate from large to small wavelengths).
+
+\begin{equation}
+\label{eq:sum_ps}
+    \overline{u_i\myprime u_j\myprime} = 
+    \int_{k_z=k_0}^{k_z=k_{N}}   \phi_{u_i\myprime u_j\myprime}  ~ \mathrm{d} k_z =
+    \int^{\lambda_z = 2\pi/k_0}_{\lambda_z = 2\pi/k_{N}}  \psi_{u_i\myprime u_j\myprime}  ~ \mathrm{d} \lambda_z
+\end{equation}
+
+In Fig.~\ref{fig:PS_PSD} we show for a ZPG TBL, different representations of the PSD of $\overline{u\myprime u\myprime}$ where the image with the black contours represent a streamwise profile at $\Rey_{\tau}=2000$ while the red contours are taken at a position where $\Rey_{\tau}=500$.
+
+\begin{figure}[h!]
+\centering
+% \captionsetup{width=0.99 \textwidth}
+\includegraphics[width=0.32\textwidth ]{imgs/spec/ZPG_Ret_500_2000_PSdkz_kz_ltau_y_ltau.jpg}
+\includegraphics[width=0.32\textwidth]{imgs/spec/ZPG_Ret_500_2000_PSdlambdaz_lambdaz_ltau_y_ltau.jpg}
+\includegraphics[width=0.32\textwidth]{imgs/spec/ZPG_Ret_500_2000_kPSdkz_lambdaz_ltau_y_ltau.jpg}
+\caption{ \label{fig:PS_PSD} Spanwise spectra of the streamwise Reynolds stress $\overline{uu}(y)$. (a) Power spectral density $\phi_{u\myprime u\myprime}(y,k_z)$; (b) Power spectral density $\psi_{u\myprime u\myprime}(y,\lambda_z)$; (c) premultiplied power spectral density $k_z\phi_{u\myprime u\myprime}$. Wavenumbers, wavelengths, wall-normal position and power spectra scaled in viscous units.}
+\end{figure}
+% contours: Retau 2000: [40 80  120 400 600]; [0.001 0.005 0.02 0.035 0.04] ;  [ 0.5 2 3.5]; 
+% contours: Retau  500: [40 80  120        ]; [0.001 0.005 0.02 0.035 0.04] ;  [ 0.5 2 3.5]; 
+
+The PS and the PSD in the wavenumbers $\phi_{u\myprime u\myprime}(y,k_z)$ present the same features as in Fig.~\ref{fig:PS_PSD}(a), since $dk_z$ or $dk_z^+$ are constant factors that does not vary with the wavenumbers. It shows a high content of power/energy of structures with a very low wavenumber which are very wide. It is possible to see similarities in the contours at different Reynolds numbers (red and black lines) in the region of high wavenumbers (small scales), although the energetic level is very low compared to that of the low wavenumbers (large scales).
+The PSD in wavelengths $\phi_{u\myprime u\myprime}(y,\lambda_z)$ is represented in Fig.~\ref{fig:PS_PSD}(b) and it focuses on the small scales. It shows that the density of power/energy in the small scales (short wavelengths) is very similar at different Reynolds numbers and larger than the PSD of the wider scales (large $\lambda_z^+$). 
+From Fig.~\ref{fig:PS_PSD}(a) and (b) we see that the small scales have a small content of the total RS energy, but their small size make the density in waveleghts to be very concentrated, while for the wider scales is the opposite, the energy they contain is very large, but their big size make the PSD to be very low or disperse.
+If we write both PSD as a function of $\phi_{u\myprime u\myprime}$, in Fig.~\ref{fig:PS_PSD}(a) we show $\phi_{u\myprime u\myprime}$ while in Fig.~\ref{fig:PS_PSD}(b) it would be $k_z^2 \phi_{u\myprime u\myprime}$, the premultiplication factor $k_z^2$ is responsible to augment the effects of the small scales while diminishing the effects of the large scales. Fig.~\ref{fig:PS_PSD}(c) shows $k_z \phi_{u\myprime u\myprime}$, whose effect equilibrates the effect of the large and small scales obtaining a better visualization of both scales.
+
+The premultiplied PSD $k_z \phi_{u\myprime u\myprime}$ is widely used and it has a geometrical explanation.
+Since the range of energetic scales is so large that we observe very small scales close to the wall and very large scales of the size of $\delta_99$, the use of logarithmic axis helps to expand the region of small $\lambda_z$ and the region close to the wall.
+If we use logarithms in the definition of wavelength, $ \mathrm{ln}(\lambda_s) = \mathrm{ln}(2\pi) - \mathrm{ln}(k_z)$, and apply the differential, $\mathrm{d}(\mathrm{ln} \lambda_z) = -\mathrm{d}(\mathrm{ln} k_z)$, and together with $\mathrm{d}k_z = k_z \mathrm{d}(\mathrm{ln} k_z)$ can be substituted in Eq.~\ref{eq:sum_ps} to obtain:
+\begin{equation}
+    \overline{u_i\myprime u_j\myprime} = 
+    \int_{k_0}^{k_{N}}   \phi_{u_i\myprime u_j\myprime}  ~ \mathrm{d} k_z = 
+    \int_{k_0}^{k_{N}}   \phi_{u_i\myprime u_j\myprime} k_z  ~ \mathrm{d}( \mathrm{ln} k_z) = 
+    \int^{\lambda_0}_{\lambda_{N}}   \phi_{u_i\myprime u_j\myprime} k_z ~ \mathrm{d}( \mathrm{ln} \lambda_z).
+\end{equation}
+
+The premultiplication by $k_z$ can be seen here as a factor to visualize a corrected area after scaling the axis with a logarithmic scale.
+From here on the PSD will always be represented in its premultiplied form $k_z\phi$ to have a clear visualization of the effects of large and small scales at the same time.
+
+\subsubsection{Spectral results on APG}
+
+In \textbf{Paper 1} the 1D spanwise spectra and the 2D spanwise and temporal spectra of the APG TBL where shown and compared to those of a ZPG TBL \citep{EAmorZPG}. By using percentage contours it was possible to show a similar behaviour in the mild APG and the ZPG simulations at different Reynolds numbers in the small-scale energy region close to the wall around an spectral near-wall peak or spectral inner peak (sIP) at $y^+\approx 15$ and $\lambda_z^+\approx 120$. Another region with similar shape is in the wake region with an spectral outer peak that seemed to scale with the Reynolds number.
+Another region is that of small-scale energy in the wake region, which is only present in the APG simulation and not in the ZPG case.
+
+\begin{itemize}
+    \item show pcolor con APG y ZPG de uu, uv en Retau 500 y 2000
+\end{itemize}
+
+The spectra shows a similar region of small-scale energy close to the wall which is responsible of the near-wall peak the RS $\overline{u\myprime u\myprime}$. The effects of $\Rey$ and $\beta$ increase the value of $\overline{u\myprime u\myprime}_{IP}^+$, even if the most of the spectra is similar for APG and ZPG at different Reynolds numbers.
+The outer-spectral peak in $k_z\phi_{uu}$ is also responsible of most of the energy contained in the ZPG in the wake region, and increasing $\beta$ it increases the energy to the point of growing the outer peak in $\overline{u\myprime u\myprime}_{OP}^+$. This behaviour is similar in the other components of the RS tensor, where at higher $\Rey$ numbers there are larger and energetic scales acting on the wake region and influencing all across the TBL.
+
+In \textbf{Paper 2} we try to understand the trends of the inner and outer peaks in $\overline{u\myprime u\myprime}$ shown in \textbf{Paper 1}. Why the inner scaled inner-peak grows with the Reynolds numbers and with the APG effects. Is it still correct to use viscous scaling?. 
+We perform a scaling analysis of the different energetic scales of the power spectral density for both ZPG and APG simulations and at different Reynolds numbers.
+First we start from the features observed in $k_z\phi_{u\myprime u\myprime}$ which are an spectral near-wall/inner peak (sIP) and an spectral outer peak (sOP). The data is scanned to look for the maxima at a certain wall-normal position and the maxima at a certain frequency. Since $k_z\phi_{u\myprime u\myprime}$ is saved in a rectangular matrix, it is equivalent to obtain the maxima along columns and the maxima along rows.
+At high Reynolds number the separation of scales even in ZPG TBLs, allows to distinguish clearly the presence of 2 maximal points for $\Rey_{\tau}>500$. Other techniques could be used to detect the local maxima, but this method was obtaining satisfactory results, specially the values of $f(y)=max(k_z\phi(k_z, y))_{k_z}$ since that function presents less noise and it is shown in \highlight{ Fig.~\ref{fig:scaling_OP} figura de los escalados de los picos} that once the Reynolds number is enough to have separation of scales, the outer peak clearly separates in the wall-normal direction from the spectral near-wall peak.
+Once sIP and sOP are located in $k_z\phi(k_z, y)$, (usually we represent with $\lambda_z$), we try the inner and outer length scalings used in \textbf{Paper 1} to scale $\overline{u\myprime u\myprime}(y)$.
+It is shown that the viscous length $\ell_{\tau}$ scales the size of the spanwise scales of the sIP $\lambda_{z, sIP}^+$ as well as the wall-normal position $y^+_{sIP}$.
+The same method is used for the spectral outer peak. The outer scales $\delta^*$ and $\delta_{99}$ were used to scale independently the wall-normal location $y_{sOP}$ and the size of the scales $\lambda_{z, sOP}$.
+In previous studies such as \cite{Kitsios2017} the $\delta^*$ scaling was successful for the $y_{OP}$ as well as for $y_{sOP}$ at much higher $\beta$, however, $\lambda_z$ was also scaled with the same scaling.
+In \cite{tanarro_2020}, the outer scaling was performed with $\delta_{99}$ for both $y$ and $\lambda_z$, and the values of $\lambda_{z,sOP}$ were better collapsed than using $\delta^*$ as in \cite{Kitsios2017}.
+Taking into account this previous studies, we allowed $y$ and $\lambda_z$ to have different length scalings, and found the optimal collapse of the region around the spectral outer peak using $y/\delta^*$ and $\lambda_z/\delta_{99}$.
+
+Once we obtained the scalings for the wall-normal position and size of the scales for both sIP and sOP, we looked the region around those peaks using the respective scalings, obtaining a good collapse, however there was another region to investigate, which is the region of small-scale energy in the wake region.
+Different scalings were tried for $\lambda_z$ looking to match the vertical part of the energetic contours of the APG simulation at different $\Rey$.
+We observed that using $\lambda_z/\delta^*$, there is a collapse around $\lambda_z/\delta^*=0.3$. It could be argued that the scaling evolves gradually at different $\lambda_z$ up to the region around the sOP that clearly scale using $\lambda_z/\delta_{99}$.
+To have a better idea of how big was the contribution of the small-scale energy in the wake region, but also to understand what is the influence of the large scales in the near-wall region, we tried to accumulate the energy from small to large scales for all the wall-normal positions. In a matrix containing the $PS(y,k_z)$, this is equivalent to do a cumulative sum $cumsum(PS(y,k_z))_{k_z}$ along $k_z$.
+In \cite{EAmorZPG}, they limited a rectangular region around sIP, to probe that inner scaled energy in this region does not vary with the Reynolds number, but we have seen that there are different scalings at different heights of the TBL, therefore, the rectangular domain to integrate over $\lambda_z$ and $y$ may not be the optimal tool for this analysis.
+
+With the idea of looking for the contribution of small and large scales using a cumulative sum, and thinking that the accumulated energy would be in a certain scaling that probably would change with $\Rey$ effects, we thought of the percentual contribution of energy, or the marginal contribution of energy.
+For a continuous PSD, the marginal contribution of energy (MCE) is defined as in Eq.~\ref{eq:MCE_cap2} and gives the percentual level of energy added by scales up to a wavenumber $k_{z,c}$ respect to the total value which would be $\overline{u_i\myprime u_j\myprime}$ at the same $y$.
+
+\begin{equation}
+\mathrm{MCE} = \int_{k_{z,c}}^{\infty} \phi_{u_iu_j} \mathrm{d} k_z \ \bigg/ \int_{0}^{\infty} \phi_{u_iu_j} \mathrm{d} k_z,
+\label{eq:MCE_cap2}
+\end{equation}
+
+If we draw the $10\%, 20\%,...,$ contours, it is easy to show the regions where certain election of length and energy scales are valid, since the contours will be parallel where the scales contributes in the same way to the total RS. And they will start to diverge when the scaling is not appropriate.
+Where the scaling is independent of $\Rey$, the contours for different $\Rey$ at the same MCE level in that region, will collapse, otherwise they will start to separate indicating for example that the influence of large-scale motions is affecting that region.
+All of this is shown in \textbf{Paper 2} in more detail.
+Answering why $\overline{u\myprime u\myprime}_{IP}^+$ grows with the $\Rey$ and $\beta$, the answer is that at higher $\Rey$ the influence of scales of size $\delta_{99}$ or larger, influence the near-wall region, and this influence is larger at with larger $\beta$. At this range of $\beta$, the viscous scaling is still valid, although certain modifications could be done taking into account the influence of the large scales.
+At larger $\beta$, the flow is near-detachment and the viscous scaling is no longer applicable.
+
+
+\subsubsection{Interscale transport of energy.}
+
+From the Reynolds transport equation or the KE, MKE and TKE budget equations, it was possible to obtain a term called ``Production'' which is composed by the RS and the mean velocity gradients, and it can be interpreted as a source of turbulent energy in the TKE equation and a sink in the MKE equation. Their contribution are cancelling each other when added to obtain the KE equation.
+
+Following this idea, a similar term is looked for in the Reynolds-stress transport equations, that may indicate the transfer of energy between large scales and small scales.
+In order to obtain such a decomposition, we follow the steps in \cite{PRL2018_Kawata, JFM2019_kawata_alfredsson}, where the perturbation velocity is further decomposed in a contribution from large scales $u_i^L$ and a contribution from small scales $u_i^S$, where the separation between large or small scales is made by a cutoff frequency/wavenumber in Fourier space $k_{z,c}$.
+\begin{equation}
+    \label{eq:intersc_decomp}
+    u_i\myprime = u_i^L + u_i^S,
+\end{equation}
+\begin{equation}
+    \label{eq:intersc_decomp}
+    \langle u_i\myprime u_j\myprime \rangle_z = 
+    \langle u_i^L u_j^L \rangle_z + 
+    \langle u_i^S u_i^S \rangle_z
+\end{equation}
+\begin{equation}
+    \label{eq:intersc_decomp}
+    \overline{u_i\myprime u_j\myprime} = 
+    \overline{ u_i^L u_j^L} + 
+    \overline{ u_i^S u_i^S}
+\end{equation}
+
+\begin{equation}
+    \label{eq:intersc_decomp}
+    \overline{ u_i^L u_j^S} = 
+    \overline{ u_i^S u_j^L} = 0
+\end{equation}
+
+
+
+\begin{itemize}
+    \item 
+\end{itemize}
