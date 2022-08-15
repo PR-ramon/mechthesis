@@ -1,221 +1,195 @@
-Experimental databases are of great utility since what we measure comes from a realistic physical scenario, although there can always be errors due to the instruments used to measure or the possible interference of the tool with the flow.
-The time resolution of the experiments depends on the frequency used by the measuring tool to obtain data, but the time span of the data is usually larger than the one we obtain in simulations.
-Another advantage of experiments is the large Reynolds flows that can be studied.
-A drawback of experimental measures is the limited space resolution and quantities that can be measured.
 
-Numerical experiments precise of a good mathematical model of the physics involved and boundary conditions surrounding the studied domain. The model that we will use to simulate the flow in a boundary layer is given by the continuity and momentum equations Eqs.\ref{eq:continuity_cap2} and \ref{eq:NS_cap2}.
+\section{Turbulent Boundary layers under adverse pressure gradients}
 
-Once the space-time evolution model is set up, the discretization of the equations can also suppose a source of errors. After the equations are discretized, they have to be compiled into a program language that has to deal with the numerical computations and the memory management, often involving the use of large clusters where chunks of data has to be passed from one machine to another. The discrete computations, methods, and memory consumption can also introduce numerical errors and the code should also be optimized to be able to produce results in an acceptable time.
-Once the main code is ready, several in/out routines should be implemented to be able to obtain the measurements required. IO operations also requires a large memory available and an increase in times of execution.
-In our numerical simulations we have used the already developed code SIMSON which is an in-house KTH code that contains all the tools to extract statistics, timeseries, correlations and spectral decompositions of different quantities that we required for our studies.
-
-\section{SIMSON code}
-SIMSON stands for ``pseudo-\textbf{S}pectral solver for
-\textbf{I}nco\textbf{M}pre\textbf{S}sible b\textbf{O}u\textbf{N}dary layer flows''. See \cite{simson_techrep} for a detailed information on the equations and implementation of the code.
-It has been widely used for channel and boundary layer flows, the majority of it is written in Fortran 77 and its results of direct numerical simulation (DNS) and large-eddy simulation (LES) have been validated with numerous experimental databases.
-The directions $x$ and $z$ are periodic directions and are discretized equispaced to be able to work in the Fourier space where derivatives reduce to the multiplication of complex numbers.
-The wall-normal direction $y$ uses Chebyshev polynomials, ideal for channel flow since it accumulates many points close to the lower and upper walls. 
-
-
-\subsection{Parallelization}
-The spatial resolutions and size of the domains required for high Reynolds flows is challenging for numerical experiments, the amount of memory needed is only manageable if several machines or CPUs work as a cluster, performing computations on local chunks of the domain and sending the necessary information to other CPUs in the cluster. 
-This passage of information is handled by parallelizing the code using  MPI (message passing interface) which allows for a parallel scalability able to run large simulations in an optimal time.
-For different strategies of parallelization in SIMSON, see \cite{MPI_SIMSON_Qiang}, where a 1D and a 2D parallelization are explained. 
-The option we used for our large $\Rey$ simulations was the 2D parallelization.
-The time used by MPI can be said to be a time where the code is not productive, therefore a strategy based in another spectral code LISO \citep{Liso_Hoyas_PRL_2006} was implemented. The variables used by SIMSON are of kind double, however LISO operates with both double and single precision. To save time in the MPI fase, the data is casted and passed as single precission streams, and received in single precision and casted again into double precision.
-This additional casting involves an overhead, however, when the amount of information passed is huge, the casting time is minimal compared to the reduction by half of the bytes involved in the communication.
-For the current b1.4 simulation, 4096 cores where used, 64 in each Fourier direction.
-
-
-
-
-\section{Numerical setup} \label{sec:NumSetUp}
-Instead of Eqs.\ref{eq:continuity_cap2} and \ref{eq:NS_cap2}, where the variables are the 3 components of the velocity and the pressure, these equations can be simplified into the 
-velocity-vorticity formulation. In this formulation the effects of the continuity equation are already included in the evolution equation of the Laplacian of the wall-normal velocity ($\nabla^2 v$) and the wall-normal vorticity $\omega_y$. The pressure is not a variable in these two equations. The velocity $v$ can be obtained directly from $\nabla^2 v$ and the other components $u$ and $w$ can be obtained from the continuity equation and the definition of vorticity.
-The pressure term reduces to solving a Laplace equation,
+A wall-bounded flow can see pressure gradients as a result of the curvature of the wall, but also as a result of a change in the direction/velocity of the outer flow $(U_{e}, V_{e}, W_{e})$. Turbulence is already a complex problem in a ZPG case with the only parameter being the Reynolds number (momentum/viscous forces), if another parameter such as pressure gradients is added, the complexity of the problem increases and it becomes difficult to distinguish what phenomena is caused by the $\Rey$ effects or by the PG history of the flow.
+In order to properly study APG TBLs, first we should try to define a canonical simple case, that is a well-defined APG along the streamwise development of the TBL, this is what we refere as the PG history of the flow.
+To address this problem, different pressure-gradient parameters have been defined in literature, such as the Rotta-Clauser PG parameter $\beta$, or a general $\Lambda_{inc}$ which in \cite{Gibis2019} is studied with different length and velocity scales.
+In our simulations of moderate APGs we have used $\beta$ defined as
 \begin{equation}
-    \nabla^2 p = \pdv{H_i}{x_i} - \nabla^2 (\frac{1}{2} u_j u_j)
+    \beta(x) = \frac{\delta^*}{\tau_w} \pdv{P}{x},
 \end{equation}
-where
+where $\pdv{P}{x}$ is the averaged pressure-gradient, $\tau_w$ is the shear stress at the wall, and $\delta^*$ is the displacement thickness, which for an incompressible flow is defined as
 \begin{equation}
-    \vec{H} = \vec{u} \land \vec{\omega }
+    U_e \delta^* = \int_{0}^{\delta_{99}} (U_e - U) dy
 \end{equation}
+
+% IDEA behind beta
+The idea behind the $\beta$ parameter is to stablish an integral equilibrium of forces across the TBL, in this way, every section of the TBL is subjected to the same dimensionless state of forces.
+To clear this idea, Fig.~\ref{fig:scheme_beta} shows a scheme of a section of the BL, where the main forces are due to the streamwise pressure-gradient and the stress at the wall.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.90\textwidth]{imgs/schemes/scheme_beta.jpg}
+    \caption{Stresses around a section of a BL.}
+    \label{fig:scheme_beta}
+\end{figure}
+
+Integrating the streamwise momentum equation over the wall-normal direction, under several assumptions, it is possible to obtain an equation which relates the integral parameters $\delta^*$, $\theta$ and $\beta$, therefore, from an integral approach, the thickness $\delta \myprime$ is chosen equal to $\delta^*$. 
+
+
+
+\section{Statistics}
+In \textbf{Paper 1} we explore the statistical quantities of TBLs under APGs. The novelty respect to the available literature was in the high fidelity database used for the ZPG and APG TBLs. Both simulations show the development of the TBL from low Reynolds numbers such as those of previous numerical databases, and reach large Reynolds numbers such as those obtained in experiments. This characteristic works as a bridge to validate previous simulations as well as the current simulations, since they have been compared successfully with experimental data.
+A benefit of numerical experiments is that the amount of quantities measured are larger than in experimental databases. This allows to have better measurements close to the wall and obtain decomposition such as spanwise spectra.
+
+In Fig.~\ref{fig:U_uu_cap2}(a) we show the inner scaled $U$ and $\sqrt{\overline{u\myprime u\myprime}}$ for a $\Rey_{\tau}=500$, where the low Reynolds number simulations are already fully developed, while the experimental database does not have measurements. A higher $\Rey_{\tau}=2000$ is required by the experiments to have a fully developed near-equilibrium APG, and the LES ZPG and the new b1.4 simulation are able to achieve those Reynolds numbers.
+The experimental data and b1.4 are in a similar range of $\beta$ and their statistics show a good agreement in the streamwise components.
+The effects of the APG in $U$ show a lower $U^+$ for larger $\beta$ in the logarithmic region, and a larger effect in the wake region. At higher Reynolds numbers, the logarithmic region enlarges and the near-equilibrium APG and the ZPG profiles get closer.
+In the turbulent perturbations, the near-wall or inner peak of $\sqrt{\overline{u\myprime u\myprime}}^+_{IP}$ grows in value with both the Reynolds number and the APG effects and its wall-normal position $y_{IP}^+$ seems to slightly increase with both APG and $\Rey$ effects. In \cite{Pozuelo_JFM_22} this trend is shown, where a filter was used to avoid saw-tooth jumps due to the wall-normal resolution close to the wall.
+Larger Reynolds numbers allows for larger scales to live in the logarithmic/wake region and for a separation of the scales to be seen. This is first seen as lower decay in $\sqrt{\overline{u\myprime u\myprime}}$ in the ZPG in the logarithmic/wake region and a development of an outer peak for APG profiles. Larger $\beta$ increase the value of the outer peak of $\sqrt{\overline{u\myprime u\myprime}}$. The trends for the outer peak value and wall-normal position of the RS,  $\overline{u\myprime u\myprime}_{OP}$ and $y_{OP}$ where analysed in \cite{Pozuelo_JFM_22}. 
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.49\textwidth]{imgs/stats/U_uu_a.eps}
+    \includegraphics[width=0.49\textwidth]{imgs/stats/U_uu_b.eps}
+    \caption{Mean streamwise $U$ (solid lines) and streamwise root mean square $u_{rms}$ or strandard deviation of the streamwise velocity (dashed lines). Wall-normal profiles taken at: (a) $\Rey_{\tau}=500$, (b) $\Rey_{\tau}=2100$. }
+    \label{fig:U_uu_cap2}
+\end{figure}
+
+\subsection{Cf}
+
+\subsection{RS}
+
+
+\subsection{Spectral decomposition}
+To have a better understanding on the perturbations we can use some mathematical tools such as the decomposition of the spatial-temporal signal using correlations, orthogonal modes, coherent structures, etc.
+The use of orthogonal modes allows to decompose the energy of the perturbations into each mode in an unique way, so the sum of the energy contained in all the modes is equivalent to the total energy of the perturbations. 
+
+In signal analysis an orthogonal decomposition which is commonly used is the Fourier decomposition which enables to look for phenomena that repeats with a certain time or spatial frequency. The energy or power associated with each mode is called energy spectra (if the signal is finite such as pulses) or power spectra (if the signal is such as sinusoidal waves, whose domain and energy is not finite, however its power is). Remember that the power is the ratio of the energy over time, where the time goes to infinity (in the case of using temporal series).
+Since we are dealing with signals which are periodic in the homogeneous dimension $z$ and are not limited in time, we will use the terminology of power spectra (PS) instead of energy spectra. 
+The modes in $z$ have a wavenumber $k_z$ and a wavelength $\lambda_z=2\pi/L_z$ where $L_z$ is the spanwise period of the domain. The same analysis can be applied in time, where we will use $k_t$ and $\lambda_t$.
+For a signal $x(t)$, with $X(k_t)$ being its Fourier transform, the power of each mode is $|X(k_z)|^2$, the squared amplitude of the mode. For a perturbation velocity, the power can be calculated as,
 \begin{equation}
-    \vec{H} = \vec{u} \times \vec{\omega }
+    PS_{u_i\myprime u_j\myprime}(k_z) = \mathcal{F}(u_i \myprime)  \mathcal{F}^*(u_j \myprime),
+    \label{eq:power_sp}
 \end{equation}
-and $\land$ $\times$ is the vectorial or cross-product of two vectors.
+where $\mathcal{F}()$ is the Fourier transform and $\mathcal{F}^*()$ represents the complex conjugate and the definition has been expanded to include the power spectra of the quantity $\langle u_i\myprime u_j\myprime \rangle_{z}$, also known as cospectra.
+Using the properties of the Fourier transform, the multiplication in Fourier space represented in Eq.~\ref{eq:power_sp} represents the Fourier transform of the two-point correlation function $\mathcal{R}_{u_i\myprime, u_j\myprime}(\delta z)=u_i\myprime \star u_j\myprime$, where $\delta z$ is the lag or distance between the two points where we look for the correlation of their velocity perturbations. According to the Wiener--Khinchin theorem, we can calculate the PS through as the Fourier transform of $\mathcal{R}_{u_i\myprime, u_j\myprime}$ or from the power spectra throught the inverse Fourier transform $\mathcal{F}^{-1}()$ we can obtain the two-point correlation function.
 
-With this formulation only 2 equations with a similar form have to be solved (see \cite{simson_techrep}) and the other velocities can be calculated in a simpler way.
-
-
-\subsection{Set up of a large APG simulation}
-
-To obtain a high-Reynolds-number simulation we take as a baseline the ZPG case by \cite{E-AmorZPG}, which is an LES and was validated through DNS data by \cite{schlatter_orlu_2010}.
-The box size is $(L_x, L_y , Lz)$, and we chose the same streamwise size $L_x$ as the ZPG case. The effects of the moderate APG conditions will cause an increase of the boundary layer thickness compared to ZPG conditions as well as the influence of wider scales, for that reason we doubled the size in the wall-normal ($L_y$) and spanwise directions ($L_z$) compared to the ZPG case. 
-\highlight{\ref{tab:param}}
-Since SIMSON \citep{simson_techrep}, uses Fourier modes in the streamwise direction, all the flow that has exited the domain through the top boundary due to the growth of the boundary layer, needs to enter again into the domain at the end of the box through a fringe region. 
-
-
-% The fringe length in the APG case will have to be longer than in the ZPG configuration, since a larger amount of flow leaves the domain in the former case and it will need to return through a negative wall-normal velocity component $V$, which will increase the Courant--Friedrichs--Lewy (CFL) number. The time step of the simulation was kept constant in order to perform Fourier analysis of the temporal series of the velocity components. Therefore, in order to have a constant time step that would not be too low and maintain a stable CFL, the fringe length had to be increased so the maximum $V$ was reduced in that region. It is important to mention that the CFL also depends on the spatial discretization, and since SIMSON uses Chebyshev polynomials in the wall-normal direction $y$, the wall-normal grid spacing ($\Delta y$) at the top boundary is too fine, if this spacing could be increased, then the CFL number would be reduced and it would be possible to use a shorter fringe with a higher $V$.
-
-\subsection{Parameters of the simulation} \label{subsec:Param_sim}
-% The streamwise, wall-normal and spanwise coordinates $(x,y,z)$ and other lengths or distances are non-dimensionalized with the reference length $\delta^*_0$ (which is the displacement thickness of the inflow laminar boundary layer). In some parts of the text $\delta^*_0$ is not written for the sake of simplicity. That is also the case for the velocities, which are non-dimensionalized with the inflow free stream velocity $U_{\rm ref}$.
-% For all of the simulations in table \ref{tab:param} the same code (SIMSON) was employed, and the well-resolved LES is based on the same sub-grid-scale (SGS) model, ADM-RT, which stands for approximate deconvolution relaxation-term \citep{Schlatter_2004} briefly described in \cite{Schlatter_etAl_LES_2010} and tested against DNS results in \cite{E-AmorZPG}. In the present simulation, denoted by b1.4, we have used a new feature in the code: the implementation of message-passing interface (MPI) communication in single precision. In this version of the code, all the computations continue to be in double precision, but the time spent in communication between processors has been reduced by casting the data into single precision and reducing by half the amount of data to communicate. 
-
-% After selecting the box size we proceed to run the simulation with ZPG boundary conditions (BC) at a low resolution. The initial conditions and inflow profile are given by a laminar Blasius boundary layer with a displacement thickness $\delta^*_0$ such that $Re_{\delta_0^*}=450$. The flow is tripped to turbulence close to the inlet at $x/\delta^*_0=10$ using a volume forcing \citep{schlatter_orlu_2012}, which is the same method as in the other databases, and with this configuration we expect the transition to turbulence to be over at $Re_{\theta}\approx 600$ \citep{E-AmorZPG, schlatter_orlu_2012}. The TBL will develop to high Reynolds numbers over a long computational domain in a similar way as it is done in a wind-tunnel experiment. This is different from setting up an auxiliary ZPG simulation and using a recycle plane for the inflow as used in \cite{Kitsios2016, Kitsios2017, Gungor_DNS_2017}, since the APG BCs downstream would affect the initial ZPG, as can be seen in figure \ref{fig:U_BCs}. At the end of the domain a fringe region \citep{SIMSON_fringe} reduces the turbulence and yields the same laminar flow as the inflow in order to obtain the periodicity required by the Fourier discretization. 
-% One flow-through is defined as the time required by the flow to pass through the domain once; here the mean streamwise velocity is of the order of the unity, so we will approximate the time required by the flow to cover a distance $L_x$ to be equal to that distance. When the flow is fully turbulent after $\sim3$ flow-through times we proceeded to progressively change the APG BC to the desired distribution. In the final APG configuration, a fringe length of $1500 \delta^*_0$ is needed to keep the simulation stable.
-% The simulation was run for enough time for the statistics to converge \citep{vinuesa2016_mec} after excluding the initial transients due to the change of resolution. 
-% The statistics were averaged for over 8 and 4 eddy-turnover times (ETT) at the middle and the end of the region of interest respectively (note that the region of interest ends before the fringe). In APG TBLs the eddy-turnover time varies significantly with $x$, and it is calculated as: $ {\rm ETT}(x) = \Delta T  u_{\tau}(x) / \delta_{99}(x)$, with $\Delta T$ being the period of time used for averaging and $u_{\tau}(x)=(\tau_w / \rho)^{0.5}$ the friction velocity.
-% We also collected time series containing 36,000 samples over the same period. 
-% The time step of the simulation is held constant at $\Delta t_{\rm step}=0.25$, which ensures that in viscous units the time step along the domain is $\Delta t_{\rm step}^+ \leq 0.35$. The statistics were sampled every 4 time steps in the region of interest, which corresponds to $\Delta t_{\rm stat}^+ \leq 0.5$.
-% The viscous scaling (denoted by the superscript `+') for velocity, length and time scales is:  $u_{\tau}$, $l_{\tau}=\nu/u_{\tau}$ and $t_{\tau}=l_{\tau}/u_{\tau}$.
-
-% In table \ref{tab:param} we show the box size, the collocation points using the 3/2 factor for de-aliasing ($m_x, m_y, m_z$) and the resolution of the various simulations. With the previous parameters we obtain the streamwise and spanwise resolution in viscous units ($\Delta x^+ , \Delta z^+$). The maximum separation of grid points in the wall-normal direction inside the boundary layer is shown in viscous units as $\Delta y_{\rm max}^+$, and it occurs close to the boundary-layer edge at the highest Reynolds numbers. In the new simulation b1.4, for $Re_{\tau}=500$, the number of grid points below $y^+=10$ is 6, below $y^+=1$ we have 2 and the distance of the first grid point from the wall is $\Delta y_w^+=0.3$. Since the viscous length scale $l_{\tau}$ increases with the streamwise position, the resolution in viscous units close to the wall will be better at higher Reynolds numbers: for $Re_{\tau}=800$ we have 7 grid points below $y^+=10$, 3 grid points below $y^+=1$ and $\Delta y_w^+=0.2$.
-% The color code that will be used along this work is shown in table \ref{tab:param}.
-
-% \begin{table}
-%   \begin{center}
-% \def~{\hphantom{0}}
-%     \begin{tabular}{ l r  r  r  r  r  r  r  r  r  r  r r}
-%     Case  & $L_x/\delta_0^*$ & $L_y/\delta_0^*$ & $L_z/\delta_0^*$ & $m_{x}$ & $m_{y}$ & $m_{z}$ & $\Delta x^{+}$ & $\Delta y_{\rm max}^{+}$ & $\Delta z^{+}$ & Colour & Reference \\[3pt]
-    
-%     b1             &    3000   &   140   &    250  &    3072 &     301 &     576 &   21.8    & 8.4 &   9.7  & \redline     & Bobke (\citeyear{bobke2017}) \\
-%     b2             &    3000   &   180   &    320  &    3072 &     361 &     768 &   21.6    & 7.9 &   9.2  & \greenline   & Bobke (\citeyear{bobke2017}) \\
-%     m16            &    3000   &   180   &    220  &    3072 &     361 &     576 &   21.2    & 7.7 &   8.3  & \cyanline    & Bobke (\citeyear{Bobke_2016}) \\
-
-%     ZPG            &   13500   &   400   &    540  &   13824 &     513 &    1152 &   22.6    & 19.6 &  10.9  & \blackline  & Eitel-Amor (\citeyear{E-AmorZPG}) \\
-%     b1.4           &   13500   &   800   &   1080  &   13824 &     301 &    1920 &   21.7    & 30.1 &  12.5  & \orangeline & Present study \\
-
-%     \end{tabular}
-%   \caption{Parameters of the simulations used in this paper. The inlet displacement thickness $\delta_0^*$ corresponds to the displacement thickness of a laminar flow for a Reynolds number $Re_{\delta_0^*}=450$. The box size is $(L_x/\delta_0^*, L_y/\delta_0^* , L_z/\delta_0^*)$  and $(m_x, m_y, m_z)$ are the number of collocation points including the $3/2$ factor for de-aliasing in the Fourier directions ($x$ and $z$). The spatial resolution in viscous units $(^+)$ of the streamwise and spanwise directions $\Delta x^{+}, \Delta z^{+}$, has been calculated using $(m_x, m_z)$ at the position $x/\delta_0^*=250$, which corresponds to a friction Reynolds number $Re_{\tau}\approx 210$ for all the simulations. The maximum viscous distance between grid points in the wall-normal direction inside the boundary layer is observed close to the boundary-layer edge and for the highest Reynolds number of each simulation. }
-%   \label{tab:param}
-%   \end{center}
-% \end{table}
-
-% The Reynolds-number and pressure-gradient ranges are shown in table \ref{tab:ROI},together with the region of interest (ROI) for each simulation. 
-% The ROI in the APG cases starts at the point where the maximum $\beta$ is achieved, while in the ZPG TBL, the starting point is taken at $Re_{\tau}=500$, which approximately corresponds to $Re_{\theta}\approx 1500$, where according to \cite{E-AmorZPG, schlatter_orlu_2012} the flow is independent of the inflow conditions and the tripping.
-% The last point of the ROI was chosen as the position where the skin-friction coefficient exhibits a clear tendency upwards due to the effects of the fringe; note that the large scales have not been affected yet.
-% In the ROI we will see a slowly decaying positive $\beta$, where the mean $\overline{\beta}$ and standard deviation $\sigma({\beta})$ have been calculated and are shown in table \ref{tab:ROI}.
-% \begin{table}
-%   \begin{center}
-% \def~{\hphantom{0}}
-%     \begin{tabular}{ l c  c  c  c  c  c c}
-%     Case  & Range of $x/\delta_0^*$ & Range of $Re_{\tau}$ &  Range of $Re_{\theta}$ & Range of $\beta$ & $\overline{\beta}$ & $\sigma({\beta}) / \overline{\beta}$ \\[3pt]
-    
-%     b1             &     718 --  2101   &  350 -- 750   &  1320 -- 3080  & 1.12 -- 0.85 & 0.99 &  0.08   \\
-%     b2             &    1148 --  2001   &  480 -- 730   &  2260 -- 3530  & 2.19 -- 1.86 & 2.06 &  0.04   \\
-%     m16            &     823 --  2001   &  370 -- 740   &  1790 -- 3650  & 2.80 -- 1.9  & 2.42 &  0.11   \\
-
-%     ZPG            &    1251 -- 11666   &  500 -- 2500  &  1430 -- 8200  &  $\simeq 0$  & $\simeq 0$ & $\simeq 0$ \\
-%     b1.4           &    2455 --  8117   &  800 -- 1900  &  3700 -- 8700  & 1.65 -- 1.20 & 1.41 &  0.10   \\
-%     \end{tabular}
-%   \caption{Flow characteristics in the ROI for the various cases.}
-%   \label{tab:ROI}
-%   \end{center}
-% \end{table}
-
-
-\subsection{Boundary conditions} \label{subsec:BC}
-
-These simulations are statistically homogeneous in the spanwise direction $z$, therefore, they are statistically two-dimensional in the streamwise and wall-normal directions, and have periodic boundary conditions in the streamwise and spanwise directions. 
-Since no cross-flow is present in the spanwise direction the only boundary condition (BC) is imposed by the periodicity. In the streamwise direction, the periodicity forces the outflow to be the same as the inflow, and this is achieved through a fringe region as mentioned above. 
-The inflow is given by a Blasius boundary layer at $Re_{\delta^*_0}=450$.
-At the bottom boundary of the computational domain there is a flat plate, the BCs of which are no-slip and no transpiration. 
-The PG will be imposed at the top boundary of the domain with the free-stream boundary conditions discussed next.
-
-\subsubsection{Free-stream boundary conditions}
-Three conditions have to be imposed at the top of the domain:
-
-\begin{equation} 
-    \frac{\partial W}{\partial y}=0,
-\label{eq:BC_dWdy}
+Note that for velocity perturbations, since Fourier modes are orthogonal, the sum of the PS for all the modes is equal to the averaged Reynolds stress,
+\begin{equation}
+    \langle u_i\myprime u_j\myprime \rangle_{z} = \sum_{k_z} PS_{u_i\myprime u_j\myprime}(k_z)
 \end{equation}
 
-\begin{equation} 
-    \Omega_z = \frac{\partial V}{\partial x} - \frac{\partial U}{\partial y}=0,
-\label{eq:BC_Vort_z}
-\end{equation}
+This step can be performed for each time step and averaged over time to obtain $\langle\langle u_i\myprime u_j\myprime \rangle_{z}\rangle_{t} = \overline{u_i\myprime u_j\myprime}$ or it can also be the result of a 2D spectral decomposition in both time and $z$, where the sum extends to all the spatial and temporal modes.
+
+The PS is useful for discrete systems, and it is the first step when we calculate numerically the spectra of a the Reynolds-stresses. It is also interesting to see how the power spectra is distributed along the wavenumbers or the wavelengths, obtaining a power spectral density (PSD).
+The average in time of the PSD in wavenumbers is $\phi_{u_i\myprime u_j\myprime}=\langle PS \rangle_t/\mathrm{d} k_z$ while the average in time PSD in wavelengths is $\psi_{u_i\myprime u_j\myprime}= \langle PS \rangle_t/\mathrm{d} \lambda_z$. Both densities can be linked using $\mathrm{d}(\lambda_z) = \mathrm{d}(2\pi/k_z) = -2\pi\mathrm{d}k_z/k_z^2$:
 
 \begin{equation}
-    % U(x) = U_{\rm ref}\left( 1 + \frac{x - x_{zpg}}{x_{b}} \right)^{-m}. 
-    U_{\rm top}(x)= \left\{ \begin{array}{ll}
-             U_{\rm ref}, &  x \leq x_z \\
-             \\ U_{\rm ref}\left( 1 + \frac{x - x_{z}}{x_{b}} \right)^{-m}, & x > x_z,
-             \end{array}
-   \right.
-\label{eq:BC_APG_U}
+    \psi_{u_i\myprime u_j\myprime} = 
+    \frac{ \langle PS_{u_i\myprime u_j\myprime} \rangle_t}{\mathrm{d} \lambda_z} =
+    -\frac{ \langle PS_{u_i\myprime u_j\myprime} \rangle_t}{\mathrm{d} k_z} \frac{k_z^2}{2\pi},
 \end{equation}
-the first one relates to the statistical homogeneity in $z$, through the derivative in the wall-normal direction of the spanwise mean velocity as shown in (\ref{eq:BC_dWdy}); 
-the second BC is zero spanwise vorticity, given by (\ref{eq:BC_Vort_z}) as in \cite{Kitsios2016, Abe_2019};
-finally, the third BC will introduce the adverse pressure gradient through a decaying mean streamwise velocity $U_{\rm top}(x)$ using a power-law distribution. First, a constant velocity is used to provide an initial ZPG development and at $x=x_z=350$ the power law is applied as indicated in (\ref{eq:BC_APG_U}). At the end of the domain the fringe raises the velocity to the initial $U_{\rm ref}$ values. The power law was also used as in \cite{Bobke_2016}, based on the theoretical studies by \cite{Townsend_1956_structure} and \cite{mellor_gibson_1966} in order to obtain a near-equilibrium TBL.
-The use of (\ref{eq:BC_APG_U}) together with a fringe region may produce instabilities in the code where the fringe region starts, which were damped by the LES filter. The parameters of the power law were chosen as in the m16 simulation \citep{Bobke_2016}, {\it i.e.},  $x_z=350$,  $x_b=60$ and $m=0.16$.
+where the minus sign is taking care by inverting the limits of integration to obtain the total RS (small to large wavenumbers is equivalent to integrate from large to small wavelengths).
 
+\begin{equation}
+\label{eq:sum_ps}
+    \overline{u_i\myprime u_j\myprime} = 
+    \int_{k_z=k_0}^{k_z=k_{N}}   \phi_{u_i\myprime u_j\myprime}  ~ \mathrm{d} k_z =
+    \int^{\lambda_z = 2\pi/k_0}_{\lambda_z = 2\pi/k_{N}}  \psi_{u_i\myprime u_j\myprime}  ~ \mathrm{d} \lambda_z
+\end{equation}
 
-% \begin{figure} 
-% \centering
-%     \includegraphics[width=0.6\textwidth]{fig_BC/U_BC_Uedge_NL.eps}
-%   \caption{Streamwise evolution of (dashed) velocity at the top of the domain $U_{\rm top}(x)$ and (solid) velocity at the boundary-layer edge $U_e(x)$. Colors as in table \ref{tab:param}.}
-% \label{fig:U_BCs}
-% \end{figure}
+In Fig.~\ref{fig:PS_PSD} we show for a ZPG TBL, different representations of the PSD of $\overline{u\myprime u\myprime}$ where the image with the black contours represent a streamwise profile at $\Rey_{\tau}=2000$ while the red contours are taken at a position where $\Rey_{\tau}=500$.
 
-%  In figure \ref{fig:U_BCs} we show the streamwise evolution of $U_{\rm top}$ for the various cases under study, and it can be observed that this quantity is constant up to $x=350$, while it decays following a power law with different exponents $m$ for each APG \citep{bobke2017}. Note that the later rise of $U_{\rm top}$ is produced by the fringe.
-%  Since the BC is applied at the top of the domain and not at the edge of the BL, the velocity at the boundary-layer edge $U_e$ is not the same as $U_{\rm top}$, a fact that has been observed in multiple experiments and simulations of PG TBL and is still discussed in the scientific community as part of the problem of determining the edge of the TBL \citep{diagnostic_Vinuesa, d99_determination_2020}. The top boundary condition is far from the boundary-layer edge where the TBL  starts to develop, however, when the TBL starts to grow, this distance is reduced and the curves for $U_{\rm top}$ and $U_{e}$ come close to each other. This effect can be seen for the APGs by Bobke since the height of the domain was lower than in the larger b1.4 simulation.
-%  The fact that the the mean streamwise velocity $U$ exhibits a gradient ${\partial U}/{\partial y} \neq 0$ (which is a consequence of the streamwise PG) makes it harder to impose a specific velocity distribution at the edge of the BL, specially for the larger high-Reynolds simulations that require a taller computational domain for the TBL to grow. This effect could be reduced if the simulation could be performed in a domain with a variable height and not in a box of constant height.
-%  As a result of this effect, the imposed ZPG at $y=L_y$ is not perceived as a pure ZPG at the boundary layer edge, where the velocity instead of being constant, is slightly decaying as in an APG. As stated above, in the case where an auxiliary ZPG simulation gives the inflow, this effect of upstream influence of the APG will not be seen.
-%  The parameters for $U_{\rm top}$ are the same in the b1.4 and m16 cases, as can be observed in figure \ref{fig:U_BCs}, but the resulting $U_{e}$ is higher in the b1.4 than in the m16 case, which means that the decay of the velocity is not as steep in the former as in the latter and it will result in a smaller $\beta$. This shows that it is important to take into account the value of $L_y$ when setting the $U_{\rm top}(x)$ distribution to achieve a certain $U_{e}(x)$. 
+\begin{figure}[h!]
+\centering
+% \captionsetup{width=0.99 \textwidth}
+\includegraphics[width=0.32\textwidth ]{imgs/spec/ZPG_Ret_500_2000_PSdkz_kz_ltau_y_ltau.jpg}
+\includegraphics[width=0.32\textwidth]{imgs/spec/ZPG_Ret_500_2000_PSdlambdaz_lambdaz_ltau_y_ltau.jpg}
+\includegraphics[width=0.32\textwidth]{imgs/spec/ZPG_Ret_500_2000_kPSdkz_lambdaz_ltau_y_ltau.jpg}
+\caption{ \label{fig:PS_PSD} Spanwise spectra of the streamwise Reynolds stress $\overline{uu}(y)$. (a) Power spectral density $\phi_{u\myprime u\myprime}(y,k_z)$; (b) Power spectral density $\psi_{u\myprime u\myprime}(y,\lambda_z)$; (c) premultiplied power spectral density $k_z\phi_{u\myprime u\myprime}$. Wavenumbers, wavelengths, wall-normal position and power spectra scaled in viscous units.}
+\end{figure}
+% contours: Retau 2000: [40 80  120 400 600]; [0.001 0.005 0.02 0.035 0.04] ;  [ 0.5 2 3.5]; 
+% contours: Retau  500: [40 80  120        ]; [0.001 0.005 0.02 0.035 0.04] ;  [ 0.5 2 3.5]; 
+
+The PS and the PSD in the wavenumbers $\phi_{u\myprime u\myprime}(y,k_z)$ present the same features as in Fig.~\ref{fig:PS_PSD}(a), since $dk_z$ or $dk_z^+$ are constant factors that does not vary with the wavenumbers. It shows a high content of power/energy of structures with a very low wavenumber which are very wide. It is possible to see similarities in the contours at different Reynolds numbers (red and black lines) in the region of high wavenumbers (small scales), although the energetic level is very low compared to that of the low wavenumbers (large scales).
+The PSD in wavelengths $\phi_{u\myprime u\myprime}(y,\lambda_z)$ is represented in Fig.~\ref{fig:PS_PSD}(b) and it focuses on the small scales. It shows that the density of power/energy in the small scales (short wavelengths) is very similar at different Reynolds numbers and larger than the PSD of the wider scales (large $\lambda_z^+$). 
+From Fig.~\ref{fig:PS_PSD}(a) and (b) we see that the small scales have a small content of the total RS energy, but their small size make the density in waveleghts to be very concentrated, while for the wider scales is the opposite, the energy they contain is very large, but their big size make the PSD to be very low or disperse.
+If we write both PSD as a function of $\phi_{u\myprime u\myprime}$, in Fig.~\ref{fig:PS_PSD}(a) we show $\phi_{u\myprime u\myprime}$ while in Fig.~\ref{fig:PS_PSD}(b) it would be $k_z^2 \phi_{u\myprime u\myprime}$, the premultiplication factor $k_z^2$ is responsible to augment the effects of the small scales while diminishing the effects of the large scales. Fig.~\ref{fig:PS_PSD}(c) shows $k_z \phi_{u\myprime u\myprime}$, whose effect equilibrates the effect of the large and small scales obtaining a better visualization of both scales.
+
+The premultiplied PSD $k_z \phi_{u\myprime u\myprime}$ is widely used and it has a geometrical explanation.
+Since the range of energetic scales is so large that we observe very small scales close to the wall and very large scales of the size of $\delta_99$, the use of logarithmic axis helps to expand the region of small $\lambda_z$ and the region close to the wall.
+If we use logarithms in the definition of wavelength, $ \mathrm{ln}(\lambda_s) = \mathrm{ln}(2\pi) - \mathrm{ln}(k_z)$, and apply the differential, $\mathrm{d}(\mathrm{ln} \lambda_z) = -\mathrm{d}(\mathrm{ln} k_z)$, and together with $\mathrm{d}k_z = k_z \mathrm{d}(\mathrm{ln} k_z)$ can be substituted in Eq.~\ref{eq:sum_ps} to obtain:
+\begin{equation}
+    \overline{u_i\myprime u_j\myprime} = 
+    \int_{k_0}^{k_{N}}   \phi_{u_i\myprime u_j\myprime}  ~ \mathrm{d} k_z = 
+    \int_{k_0}^{k_{N}}   \phi_{u_i\myprime u_j\myprime} k_z  ~ \mathrm{d}( \mathrm{ln} k_z) = 
+    \int^{\lambda_0}_{\lambda_{N}}   \phi_{u_i\myprime u_j\myprime} k_z ~ \mathrm{d}( \mathrm{ln} \lambda_z).
+\end{equation}
+
+The premultiplication by $k_z$ can be seen here as a factor to visualize a corrected area after scaling the axis with a logarithmic scale.
+From here on the PSD will always be represented in its premultiplied form $k_z\phi$ to have a clear visualization of the effects of large and small scales at the same time.
+
+\subsubsection{Wide scales in turbulence. Channel Flows}
+It has been seen that the big scales contains a large part of the turbulent energy, although the density spectral density is low.
+When we model the turbulent flow, the size of the domain imposes a limit on the size of the scales that can be simulated. In a periodic domain, the largest scale corresponds to $L_x$ and the wider scale to $L_z$. Bigger scales will be seen as infinit in size because of the periodicity, and the spectral energy will be stored in the zero-wavenumbers.
+
+The energy contained in the zero-wavenumbers is affected by the averaging.
+
+If the size of the domain is not large or wide enough, the bigger turbulent scales will not be able to be captured and the energetic spectrum will not be correct, affecting the total statistics such as the Reynolds stresses and the mean velocity profiles.
+Many analysis on the size of the domain has been performed on canonical turbulent channel flows for it simplicity.
+\highlight{Minimal channels are those small domains that assure }
+On the other way, the largest scales in channel flows where looked for in \highlight{CITAR ADRIAN que descubrieron bla bla}.
+The study on the wider scales was based on two-point correlations, but no other study similar to \highlight{CITAR ADRIAN} was performed in the spanwise direction.
+
+To have a better understunding of the wide scales obtained in APG TBLs and the effects of the domain size, we decided to study first the effect on wide-channels.
+Three simulations were performed of turbulent channel flows at $\Rey_{\tau} = 550 $ under similar conditions, with the only excemption the width of their domains which was doubled from one channel to another as it can be seen in \highlight{Tabla de los channel}.
  
-% Since we use a zero-spanwise vorticity as a BC, it is possible to rewrite the Reynolds-averaged Navier--Stokes (RANS) equations for the momentum in $x$ and $y$ in terms of the mean spanwise vorticity and its derivatives.
-% Being outside of the TBL means that the Reynolds stresses can be neglected if the turbulence is confined in the BL.
-% The first derivatives in $x$ and $y$ of $U$ and $V$ are present in the continuity equation and the mean spanwise vorticity $\Omega_z$. If those two equations are derived in $x$ and $y$ then it is possible to obtain relationships between the first derivatives of $\Omega_z$ with the second derivatives of $U$ and $V$ (present in the viscous terms of the RANS equations). Substituting the spanwise vorticity and its first derivatives in the convective and viscous terms we get:
 
-%  \begin{equation}
-%     \frac {\partial U} {\partial x} + \frac {\partial V} {\partial y} = 0. 
-%     \label{eq:continuity}
-% \end{equation}
 
-% \begin{equation} \label{eq:RANS_x}
-%     U \frac {\partial U} {\partial x} + V \frac {\partial U} {\partial y} + 
-%       \frac {\partial \overline{uu}} {\partial x} +  \frac {\partial \overline{uv}} {\partial y} =
-%       \frac {-1} {\rho} \frac {\partial P} {\partial x} +
-%       \nu \left( \frac {\partial^2 U} {\partial x ^2} + 
-%       \frac {\partial^2 U} {\partial y ^2} \right)
-% \end{equation}
-% \begin{equation} \label{eq:RANS_y}
-%     U \frac {\partial V} {\partial x} + V \frac {\partial V} {\partial y} + 
-%       \frac {\partial \overline{uv}} {\partial x} +  \frac {\partial \overline{vv}} {\partial y} =
-%       \frac {-1} {\rho} \frac {\partial P} {\partial y} +
-%       \nu \left( \frac {\partial^2 V} {\partial x ^2} + 
-%       \frac {\partial^2 V} {\partial y ^2} \right)
-% \end{equation}
+\subsubsection{Spectral results on APG}
 
-% \begin{equation} \label{eq:der_contin}
-% \begin{split}
-%     \frac{\partial^2 U}{\partial x^2} = & -\frac{\partial^2 V}{\partial x \partial y} ,\\
-%     \frac{\partial^2 U}{\partial x \partial y} = & -\frac{\partial^2 V}{\partial y^2} ,\\
-% \end{split}
-% \end{equation}
+In \textbf{Paper 1} the 1D spanwise spectra and the 2D spanwise and temporal spectra of the APG TBL where shown and compared to those of a ZPG TBL \citep{EAmorZPG}. By using percentage contours it was possible to show a similar behaviour in the mild APG and the ZPG simulations at different Reynolds numbers in the small-scale energy region close to the wall around an spectral near-wall peak or spectral inner peak (sIP) at $y^+\approx 15$ and $\lambda_z^+\approx 120$. Another region with similar shape is in the wake region with an spectral outer peak that seemed to scale with the Reynolds number.
+Another region is that of small-scale energy in the wake region, which is only present in the APG simulation and not in the ZPG case.
 
-% and taking the x and y derivative in the definition of the mean spanwise vorticity,
-%  \begin{equation} \label{eq:der_vort}
-% \begin{split}
-%     \frac{\partial \Omega_z}{\partial x} = &
-%     \frac{\partial^2 V}{\partial x^2} - \frac{\partial^2 U}{\partial x \partial y}, \\
-%     \frac{\partial \Omega_z}{\partial y} = &
-%     \frac{\partial^2 V}{\partial x \partial y} - \frac{\partial^2 U}{\partial y^2}, \\  
-% \end{split}
-% \end{equation}
+\begin{itemize}
+    \item show pcolor con APG y ZPG de uu, uv en Retau 500 y 2000
+\end{itemize}
 
-% It is possible to substitute the viscous term formulation in velocities with the spanwise vorticity using eqs. \ref{eq:der_contin} and \ref{eq:der_vort} in the x and y momentum equations \ref{eq:RANS_x}, \ref{eq:RANS_y}. 
+The spectra shows a similar region of small-scale energy close to the wall which is responsible of the near-wall peak the RS $\overline{u\myprime u\myprime}$. The effects of $\Rey$ and $\beta$ increase the value of $\overline{u\myprime u\myprime}_{IP}^+$, even if the most of the spectra is similar for APG and ZPG at different Reynolds numbers.
+The outer-spectral peak in $k_z\phi_{uu}$ is also responsible of most of the energy contained in the ZPG in the wake region, and increasing $\beta$ it increases the energy to the point of growing the outer peak in $\overline{u\myprime u\myprime}_{OP}^+$. This behaviour is similar in the other components of the RS tensor, where at higher $\Rey$ numbers there are larger and energetic scales acting on the wake region and influencing all across the TBL.
 
-\begin{equation}\label{eq:RANS_x_BC_OMEGA}
-    U \frac {\partial U} {\partial x} + V \frac {\partial V} {\partial x} +
-      \frac {1} {\rho} \frac {\partial P} {\partial x} = 
-      \nu \left( \frac {\partial \Omega_z} {\partial y} \right) + V \Omega_z,
+\subsubsection{Scaling of APG spectrum}
+
+In \textbf{Paper 2} we try to understand the trends of the inner and outer peaks in $\overline{u\myprime u\myprime}$ shown in \textbf{Paper 1}. Why the inner scaled inner-peak grows with the Reynolds numbers and with the APG effects. Is it still correct to use viscous scaling?. 
+We perform a scaling analysis of the different energetic scales of the power spectral density for both ZPG and APG simulations and at different Reynolds numbers.
+First we start from the features observed in $k_z\phi_{u\myprime u\myprime}$ which are an spectral near-wall/inner peak (sIP) and an spectral outer peak (sOP). The data is scanned to look for the maxima at a certain wall-normal position and the maxima at a certain frequency. Since $k_z\phi_{u\myprime u\myprime}$ is saved in a rectangular matrix, it is equivalent to obtain the maxima along columns and the maxima along rows.
+At high Reynolds number the separation of scales even in ZPG TBLs, allows to distinguish clearly the presence of 2 maximal points for $\Rey_{\tau}>500$. Other techniques could be used to detect the local maxima, but this method was obtaining satisfactory results, specially the values of $f(y)=max(k_z\phi(k_z, y))_{k_z}$ since that function presents less noise and it is shown in \highlight{ Fig.~\ref{fig:scaling_OP} figura de los escalados de los picos} that once the Reynolds number is enough to have separation of scales, the outer peak clearly separates in the wall-normal direction from the spectral near-wall peak.
+Once sIP and sOP are located in $k_z\phi(k_z, y)$, (usually we represent with $\lambda_z$), we try the inner and outer length scalings used in \textbf{Paper 1} to scale $\overline{u\myprime u\myprime}(y)$.
+It is shown that the viscous length $\ell_{\tau}$ scales the size of the spanwise scales of the sIP $\lambda_{z, sIP}^+$ as well as the wall-normal position $y^+_{sIP}$.
+The same method is used for the spectral outer peak. The outer scales $\delta^*$ and $\delta_{99}$ were used to scale independently the wall-normal location $y_{sOP}$ and the size of the scales $\lambda_{z, sOP}$.
+In previous studies such as \cite{Kitsios2017} the $\delta^*$ scaling was successful for the $y_{OP}$ as well as for $y_{sOP}$ at much higher $\beta$, however, $\lambda_z$ was also scaled with the same scaling.
+In \cite{tanarro_2020}, the outer scaling was performed with $\delta_{99}$ for both $y$ and $\lambda_z$, and the values of $\lambda_{z,sOP}$ were better collapsed than using $\delta^*$ as in \cite{Kitsios2017}.
+Taking into account this previous studies, we allowed $y$ and $\lambda_z$ to have different length scalings, and found the optimal collapse of the region around the spectral outer peak using $y/\delta^*$ and $\lambda_z/\delta_{99}$.
+
+Once we obtained the scalings for the wall-normal position and size of the scales for both sIP and sOP, we looked the region around those peaks using the respective scalings, obtaining a good collapse, however there was another region to investigate, which is the region of small-scale energy in the wake region.
+Different scalings were tried for $\lambda_z$ looking to match the vertical part of the energetic contours of the APG simulation at different $\Rey$.
+We observed that using $\lambda_z/\delta^*$, there is a collapse around $\lambda_z/\delta^*=0.3$. It could be argued that the scaling evolves gradually at different $\lambda_z$ up to the region around the sOP that clearly scale using $\lambda_z/\delta_{99}$.
+To have a better idea of how big was the contribution of the small-scale energy in the wake region, but also to understand what is the influence of the large scales in the near-wall region, we tried to accumulate the energy from small to large scales for all the wall-normal positions. In a matrix containing the $PS(y,k_z)$, this is equivalent to do a cumulative sum $cumsum(PS(y,k_z))_{k_z}$ along $k_z$.
+In \cite{EAmorZPG}, they limited a rectangular region around sIP, to probe that inner scaled energy in this region does not vary with the Reynolds number, but we have seen that there are different scalings at different heights of the TBL, therefore, the rectangular domain to integrate over $\lambda_z$ and $y$ may not be the optimal tool for this analysis.
+
+With the idea of looking for the contribution of small and large scales using a cumulative sum, and thinking that the accumulated energy would be in a certain scaling that probably would change with $\Rey$ effects, we thought of the percentual contribution of energy, or the marginal contribution of energy.
+For a continuous PSD, the marginal contribution of energy (MCE) is defined as in Eq.~\ref{eq:MCE_cap2} and gives the percentual level of energy added by scales up to a wavenumber $k_{z,c}$ respect to the total value which would be $\overline{u_i\myprime u_j\myprime}$ at the same $y$.
+
+\begin{equation}
+\mathrm{MCE} = \int_{k_{z,c}}^{\infty} \phi_{u_iu_j} \mathrm{d} k_z \ \bigg/ \int_{0}^{\infty} \phi_{u_iu_j} \mathrm{d} k_z,
+\label{eq:MCE_cap2}
 \end{equation}
-\begin{equation}\label{eq:RANS_Y_BC_OMEGA}
-    U \frac {\partial U} {\partial y} + V \frac {\partial V} {\partial y} +
-      \frac {1} {\rho} \frac {\partial P} {\partial y} = 
-      \nu \left( \frac {\partial \Omega_z} {\partial x} \right) + U \Omega_z,
-\end{equation}
-where $P$ is the pressure. In these equations we can see the effects of using a zero-spanwise vorticity or also making its derivatives zero. The convective terms on the left-hand side can be written as the gradient of a total pressure $P_T = P + (U^2+V^2)/(2\rho)$ caused by the effects of non-zero spanwise vorticity. Even if the spanwise vorticity is set to zero at the top of the domain, this does not guarantee that it will remain zero in all the domain outside of the TBL.
-The spanwise vorticity outside of the BL is related to the curvature of $P_T$ outside of the BL due to the growth of the BL.
+
+If we draw the $10\%, 20\%,...,$ contours, it is easy to show the regions where certain election of length and energy scales are valid, since the contours will be parallel where the scales contributes in the same way to the total RS. And they will start to diverge when the scaling is not appropriate.
+Where the scaling is independent of $\Rey$, the contours for different $\Rey$ at the same MCE level in that region, will collapse, otherwise they will start to separate indicating for example that the influence of large-scale motions is affecting that region.
+All of this is shown in \textbf{Paper 2} in more detail.
+Answering why $\overline{u\myprime u\myprime}_{IP}^+$ grows with the $\Rey$ and $\beta$, the answer is that at higher $\Rey$ the influence of scales of size $\delta_{99}$ or larger, influence the near-wall region, and this influence is larger at with larger $\beta$. At this range of $\beta$, the viscous scaling is still valid, although certain modifications could be done taking into account the influence of the large scales.
+At larger $\beta$, the flow is near-detachment and the viscous scaling is no longer applicable.
+
+
+
+
+
+
+
+
+
+
