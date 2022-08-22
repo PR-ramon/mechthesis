@@ -8,7 +8,7 @@ In our simulations of moderate APGs we have used $\beta$ defined as
 \begin{equation}
     \beta(x) = \frac{\delta^*}{\tau_w} \pdv{P}{x},
 \end{equation}
-where $\pdv{P}{x}$ is the averaged pressure-gradient, $\tau_w$ is the shear stress at the wall, and $\delta^*$ is the displacement thickness, which for an incompressible flow is defined as
+where $\pdv{P}/{x}$ is the averaged pressure-gradient, $\tau_w$ is the mean shear stress at the wall, and $\delta^*$ is the displacement thickness, which for an incompressible flow is defined as
 \begin{equation}
     U_e \delta^* = \int_{0}^{\delta_{99}} (U_e - U) dy
 \end{equation}
@@ -32,8 +32,54 @@ Integrating the streamwise momentum equation over the wall-normal direction, und
 In \textbf{Paper 1} we explore the statistical quantities of TBLs under APGs. The novelty respect to the available literature was in the high fidelity database used for the ZPG and APG TBLs. Both simulations show the development of the TBL from low Reynolds numbers such as those of previous numerical databases, and reach large Reynolds numbers such as those obtained in experiments. This characteristic works as a bridge to validate previous simulations as well as the current simulations, since they have been compared successfully with experimental data.
 A benefit of numerical experiments is that the amount of quantities measured are larger than in experimental databases. This allows to have better measurements close to the wall and obtain decomposition such as spanwise spectra.
 
+\begin{table}
+  \begin{center}
+  \fontsize{8.0pt}{10.25pt}\selectfont
+  \addtolength{\tabcolsep}{-2pt}
+\def~{\hphantom{0}}
+    \begin{tabular}{ l r  r  r }
+    Case  & Colour & Reference \\[3pt]
+    \hline
+    b1             & \redline     & Bobke (\citeyear{bobke2017}) \\
+    b2             & \greenline   & Bobke (\citeyear{bobke2017}) \\
+    m16            & \blueline    & Bobke (\citeyear{Bobke_2016}) \\
+
+    ZPG            & \blackline   & Eitel-Amor (\citeyear{E-AmorZPG}) \\
+    b1.4           & \orangeline  & Pozuelo (\citeyear{Pozuelo_JFM_22}) \\
+    exp            & \redcircle   & SanMiguel (\citeyear{MTL_expSANMIGUEL}) \\
+    \hline
+    \end{tabular}
+  \caption{ Line styles and colors used for the simulations and experiments used in the thesis.}
+  \label{tab:param_cap2}
+  \end{center}
+\end{table}
+
+% \begin{table}
+%   \begin{center}
+%   \fontsize{8.0pt}{10.25pt}\selectfont
+%   \addtolength{\tabcolsep}{-2pt}
+% \def~{\hphantom{0}}
+%     \begin{tabular}{ l r  r  r  r  r  r  r  r  r  r  r r}
+%     Case  & $L_x/\delta_0^*$ & $L_y/\delta_0^*$ & $L_z/\delta_0^*$ & $m_{x}$ & $m_{y}$ & $m_{z}$ & $\Delta x^{+}$ & $\Delta y_{\rm max}^{+}$ & $\Delta z^{+}$ & Colour & Reference \\[3pt]
+    
+%     b1             &    3000   &   140   &    250  &    3072 &     301 &     576 &   21.8    & 8.4 &   9.7  & \redline     & Bobke (\citeyear{bobke2017}) \\
+%     b2             &    3000   &   180   &    320  &    3072 &     361 &     768 &   21.6    & 7.9 &   9.2  & \greenline   & Bobke (\citeyear{bobke2017}) \\
+%     m16            &    3000   &   180   &    220  &    3072 &     361 &     576 &   21.2    & 7.7 &   8.3  & \blueline    & Bobke (\citeyear{Bobke_2016}) \\
+
+%     ZPG            &   13500   &   400   &    540  &   13824 &     513 &    1152 &   22.6    & 19.6 &  10.9  & \blackline  & Eitel-Amor (\citeyear{E-AmorZPG}) \\
+%     b1.4           &   13500   &   800   &   1080  &   13824 &     301 &    1920 &   21.7    & 30.1 &  12.5  & \orangeline & Present study \\
+
+%     \end{tabular}
+%   \caption{
+% %   Parameters of the simulations used in this paper. The inlet displacement thickness $\delta_0^*$ corresponds to the displacement thickness of a laminar flow for a Reynolds number $Re_{\delta_0^*}=450$. The box size is $(L_x/\delta_0^*, L_y/\delta_0^* , L_z/\delta_0^*)$  and $(m_x, m_y, m_z)$ are the number of collocation points including the $3/2$ factor for de-aliasing in the Fourier directions ($x$ and $z$). The spatial resolution in viscous units $(^+)$ of the streamwise and spanwise directions $\Delta x^{+}, \Delta z^{+}$, has been calculated using $(m_x, m_z)$ at the position $x/\delta_0^*=250$, which corresponds to a friction Reynolds number $Re_{\tau}\approx 210$ for all the simulations. The maximum viscous distance between grid points in the wall-normal direction inside the boundary layer is observed close to the boundary-layer edge and for the highest Reynolds number of each simulation. 
+%   }
+%   \label{tab:param_cap2}
+%   \end{center}
+% \end{table}
+
+
 In Fig.~\ref{fig:U_uu_cap2}(a) we show the inner scaled $U$ and $\sqrt{\overline{u\myprime u\myprime}}$ for a $\Rey_{\tau}=500$, where the low Reynolds number simulations are already fully developed, while the experimental database does not have measurements. A higher $\Rey_{\tau}=2000$ is required by the experiments to have a fully developed near-equilibrium APG, and the LES ZPG and the new b1.4 simulation are able to achieve those Reynolds numbers.
-The experimental data and b1.4 are in a similar range of $\beta$ and their statistics show a good agreement in the streamwise components.
+The experimental data \citep{MTL_expSANMIGUEL} and b1.4 are in a similar range of $\beta$ and their statistics show a good agreement in the streamwise components.
 The effects of the APG in $U$ show a lower $U^+$ for larger $\beta$ in the logarithmic region, and a larger effect in the wake region. At higher Reynolds numbers, the logarithmic region enlarges and the near-equilibrium APG and the ZPG profiles get closer.
 In the turbulent perturbations, the near-wall or inner peak of $\sqrt{\overline{u\myprime u\myprime}}^+_{IP}$ grows in value with both the Reynolds number and the APG effects and its wall-normal position $y_{IP}^+$ seems to slightly increase with both APG and $\Rey$ effects. In \cite{Pozuelo_JFM_22} this trend is shown, where a filter was used to avoid saw-tooth jumps due to the wall-normal resolution close to the wall.
 Larger Reynolds numbers allows for larger scales to live in the logarithmic/wake region and for a separation of the scales to be seen. This is first seen as lower decay in $\sqrt{\overline{u\myprime u\myprime}}$ in the ZPG in the logarithmic/wake region and a development of an outer peak for APG profiles. Larger $\beta$ increase the value of the outer peak of $\sqrt{\overline{u\myprime u\myprime}}$. The trends for the outer peak value and wall-normal position of the RS,  $\overline{u\myprime u\myprime}_{OP}$ and $y_{OP}$ where analysed in \cite{Pozuelo_JFM_22}. 
@@ -47,12 +93,38 @@ Larger Reynolds numbers allows for larger scales to live in the logarithmic/wake
     \label{fig:U_uu_cap2}
 \end{figure}
 
-\subsection{Cf}
+\subsection{Friction at the wall, on the friction coefficient $c_f$}
 
-\subsection{RS}
+The drag in aerodynamic structures has an important contribution from the friction at the wall, also known as skin friction which is the mean shear stress produced at the wall $\tau_w$, due to the viscous forces.
+Instead of $\tau_w$, it is common to look at the friction factor $c_f$ which is a ratio between the friction stresses and the free flow,
+\begin{equation}
+    c_f = \frac{\rho \tau_w}{1/2 \rho U_e^2} = \frac{2 u_{\tau}^2}{U_e^2} = 2\left( \frac{u_{\tau}}{U_e} \right)^2
+\end{equation}
+but it can also be seen as an indicator of the friction-velocity with respect to the free-flow velocity.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.85\textwidth]{imgs/stats/cf_Retau.eps}
+    \caption{Evolution of the mean friction coefficient $c_f = \pdv{2\overline{\tau_w}}/{U_e^2}$ for ZPG and APG simulations (solid lines) and experiments by \cite{MTL_expSANMIGUEL} (red circles).}
+    \label{fig:cap3_evol_cf}
+\end{figure}
+
+In Fig.~\ref{fig:cap3_evol_cf} we show the mean friction factor development along the turbulent boundary layers for ZPG and APG simulations and an experimental APG.
+It can be seen how for attached flows and near-equilibrium TBLs the trend is positive, decays with the Reynolds number and the value is lower the stronger the APG intensity.
+The simulations show an increase for the larger $\Rey_{\tau}$ where the fringe region starts to affect the flow, and this region is not included in the region of interest (ROI) of our database.
+
+The effects of APG on the coefficient $c_f$ are studied through the Renard--Deck (RD) \citep{Renard2016} identity in \textbf{Paper 3} and the Fukagata, Iwamoto \& Kasagi identity (FIK)  \citep{Fukagata2002} in \textbf{Paper 4}.
+
+The FIK decomposition of $c_f$ is adapted to include a join contribution of the pressure gradient and the streamwise convection, looking for a dynamic pressure perspective, instead of treating this antagonizing contributions as a separate entity.
+
+A different approach onto the $c_f$ is that of the RD decomposition, taken from a perspective based on the mean streamwise kinetic energy budget. 
+The main contributions to the total $c_f$ are divided in three main terms representing the viscous dissipation, the turbulent kinetic energy production and the spatial growth.
+The contribution from the viscous diffusion is mainly located in the inner/near-wall region of the TBL and the influence diminish for stronger APGs, since the influence of the larger scales located in the outer region of the TBL are more energized and its effects on $c_f$ are larger.
+The TKE Production close to the wall have a near-wall peak that influences $c_f$, but the influence of APGs produce a strong outer-peak in the outer region.
+The spatial growth contribution is further decomposed into three subterms, the main ones are due to the mean convection $\Vec{U}\cdot \nabla\Vec{U}$ (which has a positive contribution across the TBL) and a direct contribution of the pressure-gradient (which has a negative contribution on $c_f$). These terms are more relevant the stronger the APG is and decrease with $\Rey$, and their influence is mostly located in the outer/wake region of the TBL.
 
 
-\subsection{Spectral decomposition}
+\section{Spectral decomposition}
 To have a better understanding on the perturbations we can use some mathematical tools such as the decomposition of the spatial-temporal signal using correlations, orthogonal modes, coherent structures, etc.
 The use of orthogonal modes allows to decompose the energy of the perturbations into each mode in an unique way, so the sum of the energy contained in all the modes is equivalent to the total energy of the perturbations. 
 
@@ -122,7 +194,7 @@ If we use logarithms in the definition of wavelength, $ \mathrm{ln}(\lambda_s) =
 The premultiplication by $k_z$ can be seen here as a factor to visualize a corrected area after scaling the axis with a logarithmic scale.
 From here on the PSD will always be represented in its premultiplied form $k_z\phi$ to have a clear visualization of the effects of large and small scales at the same time.
 
-\subsubsection{Wide scales in turbulence. Channel Flows}
+\subsection{Wide scales in turbulence. Channel Flows}
 It has been seen that the big scales contains a large part of the turbulent energy, although the density spectral density is low.
 When we model the turbulent flow, the size of the domain imposes a limit on the size of the scales that can be simulated. In a periodic domain, the largest scale corresponds to $L_x$ and the wider scale to $L_z$. Bigger scales will be seen as infinit in size because of the periodicity, and the spectral energy will be stored in the zero-wavenumbers.
 
@@ -135,23 +207,83 @@ On the other way, the largest scales in channel flows where looked for in \highl
 The study on the wider scales was based on two-point correlations, but no other study similar to \highlight{CITAR ADRIAN} was performed in the spanwise direction.
 
 To have a better understunding of the wide scales obtained in APG TBLs and the effects of the domain size, we decided to study first the effect on wide-channels.
-Three simulations were performed of turbulent channel flows at $\Rey_{\tau} = 550 $ under similar conditions, with the only excemption the width of their domains which was doubled from one channel to another as it can be seen in \highlight{Tabla de los channel}.
+Three simulations were performed of turbulent channel flows at $\Rey_{\tau} = 550 $ under similar conditions, with the only excemption the width of their domains which was doubled from one channel to another as it can be seen in Tab.~\ref{tab:param_WC_cap2}.
  
+\begin{table}
+    \begin{center}
+    \def~{\hphantom{0}}
+    \begin{tabular}{ l r  r  r  r }
+    Case  & $L_x/h$ & $L_y/h$ & $L_z/h$ &  Colour     \\[3pt]
+    C1    & 8$\pi$  &    2    & 4$\pi$  &  \redline   \\
+    C2    & 8$\pi$  &    2    & 8$\pi$  &  \redline   \\
+    C3    & 8$\pi$  &    2    & 16$\pi$ &  \redline   \\
+    \end{tabular}
+    \caption{Parameters of the channel flows simulations. The reference length $h$ corresponds to half the channel's height. The box size is $(L_x/h, L_y/h , L_z/h)$.}
+    \label{tab:param_WC_cap2}
+    \end{center}
+\end{table}
+
+\highlight{The contours of the PS or the spectral density $\phi(k_Z, y)$ are not closed for the largest scales when $k_z \rightarrow 0$. The largest scale captured by Fourier analysis corresponds to $k_Z=(2\pi)/L_z$ or $L_z$, and $k_z=0$ corresponds to an averaged energy. 
+The property where the integral of the PSD equals the RS component includes the energy contained in the wavenumber $k_z=0$. The premultiplication by $k_z$ automatically cancels that energy, making it inappropriate to use premultiplied spectra for integral analysis. 
+Then this question arises, ``is it possible to have a domain $L_z$ where the largest Fourier scales $\lambda_z=\{L_z, L_z/2, ... \}$ does not contain spectral energy, therefore the contours are closed?''.
+And the answer is that it depends on the averaging that we use. This answer will be explained using the Reynolds-average decomposition that we have introduced previously, and apply it to the component $u$.}
+With $PS_T$ we denote the power spectra of the total velocity $u$, and the energy contained in the wavenumber $k_z$ corresponds to the average in $z$.
 
 
-\subsubsection{Spectral results on APG}
+\begin{equation}
+    PS_T = \mathcal{F}(u)\mathcal{F}^*(u) = \mathcal{F}(U)\mathcal{F}^*(U) + \mathcal{F}(u\myprime)\mathcal{F}^*(u\myprime) + \mathcal{F}(U)\mathcal{F}^*(u\myprime) + \mathcal{F}(u\myprime)\mathcal{F}^*(U)  
+\end{equation}
+
+\begin{flalign}
+    % \label{eq:intsc_3term_small}
+     PS_T =& \mathcal{F}(u)\mathcal{F}^*(u) &&\\\nonumber
+     =&  \mathcal{F}(U)\mathcal{F}^*(U) + \mathcal{F}(u\myprime)\mathcal{F}^*(u\myprime) + \mathcal{F}(U)\mathcal{F}^*(u\myprime) + \mathcal{F}(u\myprime)\mathcal{F}^*(U) &&\\\nonumber
+     =&  UU + \mathcal{F}(u\myprime)\mathcal{F}^*(u\myprime) + U(\mathcal{F}(u\myprime) + \mathcal{F}^*(u\myprime)) &&\\\nonumber
+\end{flalign}  
+\rev{and the last term vanishes when the time average is performed?}
+
+\begin{equation}
+\begin{split}
+    % \label{eq:intsc_3term_small}
+     PS(k_z=0,t) = \langle u\myprime \rangle_z \langle u\myprime \rangle_z  (t) \\
+     \langle PS(k_z=0) \rangle_t = \langle (\langle u\myprime \rangle_z)^2 \rangle_t > 0,
+\end{split}
+\end{equation}
+since by definition, $U$ and $u\myprime$ are chosen as a constant and a fluctuation based on the total average $\overline{( \cdot )} = \langle \langle ( \cdot ) \rangle_z \rangle_t$, and $\overline{u\myprime}=0$, but $ \langle u\myprime \rangle_z \neq 0$.
+
+Therefore, the energy contained in $k_z=0$ can not be 0, but it is somehow a result of the average used for the decomposition.
+What can be study is how the energy contained in $k_z=0$ changes with $L_z$, and even more relevant from the physical point of view is how much is the energy contained in the first wavenumbers or the largest scales $\lambda_z=L_z, L_z/2, L_z/3,...$.
+
+
+\subsection{Spectral results on APG}
 
 In \textbf{Paper 1} the 1D spanwise spectra and the 2D spanwise and temporal spectra of the APG TBL where shown and compared to those of a ZPG TBL \citep{EAmorZPG}. By using percentage contours it was possible to show a similar behaviour in the mild APG and the ZPG simulations at different Reynolds numbers in the small-scale energy region close to the wall around an spectral near-wall peak or spectral inner peak (sIP) at $y^+\approx 15$ and $\lambda_z^+\approx 120$. Another region with similar shape is in the wake region with an spectral outer peak that seemed to scale with the Reynolds number.
 Another region is that of small-scale energy in the wake region, which is only present in the APG simulation and not in the ZPG case.
 
-\begin{itemize}
-    \item show pcolor con APG y ZPG de uu, uv en Retau 500 y 2000
-\end{itemize}
+\begin{figure}[h!]
+\centering
+% \captionsetup{width=0.99 \textwidth}
+\includegraphics[width=0.48\textwidth]{ZPG_uu.jpg}
+\includegraphics[width=0.48\textwidth]{APG_uu.jpg}
+% \includegraphics[width=0.48\textwidth]{ZPG_uv.jpg}
+% \includegraphics[width=0.48\textwidth]{APG_uv.jpg}
+\caption{ \label{fig:ZPG_APG_Ret_500_2000_uu} Premultiplied spectrum $k_z\phi_{uu}$ for (a)ZPG and (b)b1.4 simulations. Red contours at $\Rey_{\tau}=500$ and background and black contour are at a positions $\Rey_{\tau}=2000$. }
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+% \captionsetup{width=0.99 \textwidth}
+% \includegraphics[width=0.48\textwidth]{ZPG_uu.jpg}
+% \includegraphics[width=0.48\textwidth]{APG_uu.jpg}
+\includegraphics[width=0.48\textwidth]{ZPG_uv.jpg}
+\includegraphics[width=0.48\textwidth]{APG_uv.jpg}
+\caption{ \label{fig:ZPG_APG_Ret_500_2000_uv} Premultiplied spectrum $k_z\phi_{uu}$ and $|k_z\phi_{uv}|$ for (a)ZPG and (b)b1.4 simulations. Red contours at $\Rey_{\tau}=500$ and background and black contour are at a positions $\Rey_{\tau}=2000$. }
+\end{figure}
 
 The spectra shows a similar region of small-scale energy close to the wall which is responsible of the near-wall peak the RS $\overline{u\myprime u\myprime}$. The effects of $\Rey$ and $\beta$ increase the value of $\overline{u\myprime u\myprime}_{IP}^+$, even if the most of the spectra is similar for APG and ZPG at different Reynolds numbers.
 The outer-spectral peak in $k_z\phi_{uu}$ is also responsible of most of the energy contained in the ZPG in the wake region, and increasing $\beta$ it increases the energy to the point of growing the outer peak in $\overline{u\myprime u\myprime}_{OP}^+$. This behaviour is similar in the other components of the RS tensor, where at higher $\Rey$ numbers there are larger and energetic scales acting on the wake region and influencing all across the TBL.
 
-\subsubsection{Scaling of APG spectrum}
+\subsection{Scaling of APG spectrum}
 
 In \textbf{Paper 2} we try to understand the trends of the inner and outer peaks in $\overline{u\myprime u\myprime}$ shown in \textbf{Paper 1}. Why the inner scaled inner-peak grows with the Reynolds numbers and with the APG effects. Is it still correct to use viscous scaling?. 
 We perform a scaling analysis of the different energetic scales of the power spectral density for both ZPG and APG simulations and at different Reynolds numbers.
@@ -187,7 +319,18 @@ At larger $\beta$, the flow is near-detachment and the viscous scaling is no lon
 
 
 
-
+\begin{figure}[h!]
+\centering
+% \captionsetup{width=0.99 \textwidth}
+\includegraphics[width=0.45\textwidth]{imgs/spec/specMCE_uu_ltau_ltau.eps}
+\includegraphics[width=0.45\textwidth]{imgs/spec/specMCE_uu_dstar_d99.eps}
+\includegraphics[width=0.45\textwidth]{imgs/spec/specMCE_uu_d99_dstar.eps}
+\caption{ \label{fig:MCE_spec}
+Contours of the premultiplied spectra $k_z\phi_{uu}$ in orange for b1.4 and light gray for the ZPG simulations.
+The blue($20\%$), green($50\%$) and red($80\%$) lines are the MCE contours, where the light colors are used for the APG and the darker shades for the ZPG case.
+Solid lines are used for $\Rey_{\tau}=1000$, dashed lines for $\Rey_{\tau}=1500$ and dotted lines $\Rey_{\tau}=2000$. Panel (a) shows the region that scales using inner scaling for both $y$ and $\lambda_z$; (b) scales the larger scales in the wake region by using two different length scales, $y\delta^*$ and $\lambda_z/\delta_{99}$. Panel (c) shows the scaling of the small-scale energy in the wake region characteristic of APGs, where $\lambda_z$ scales with $\delta^*$. The MCE contours are taken at $0.1\%$(yellow), $2.2\%$(pink) and  $15\%$(purple). 
+}
+\end{figure}
 
 
 

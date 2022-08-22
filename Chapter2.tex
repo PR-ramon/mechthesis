@@ -66,9 +66,9 @@ Other boundary layers are for example thermal boundary layers where the focus is
 
 When we consider the flow around a solid object in an incompressible regime, the flow can detect the presence of the solid object and adapt its trajectory. The flow then surrounds the solid starting from the leading edge and close to the solid surface the boundary layer is the region where the velocity of the flow adapts from the solid surface velocity to the outer flow velocity. The boundary layer thickness have to be defined according to the main idea of a region of the fluid close to the solid wall that encloses the major viscous effects created due to the fluid/surface interaction. An obvious effect of the presence of a wall is that the streamwise velocity has to adapt from the velocity of the solid boundary to the exterior velocity, commonly called velocity at the infinity $U_{\infty}$. 
 In general, for a certain position of the wall, the velocity is measured in the wall-normal direction, obtaining a profile of streamwise velocities $u(y,t)$. Then $U_{\infty}=u(y\rightarrow \infty)$ is the unperturbed velocity and can change from one streamwise position to another.
-In the case of zero-pressure gradient boundary layers, $U_{\infty}$ is taken as constant, since in a steady flow in the absence of viscous forces, $\pdv{u}/{x}$ should be zero. 
+In the case of zero-pressure gradient boundary layers, $U_{\infty}$ is taken as constant, since in a steady flow in the absence of viscous forces, $\pdv{U}/{x}$ should be zero. 
 
-Since an obvious indicator of the boundary layer is the adaptation of the streamwise velocity, the boundary layer can be defined using this property and the $99\%$ thickness $\delta_{99}$ is defined as the wall-normal position where $u(y=\delta_{99}) = U_{\infty}$.
+Since an obvious indicator of the boundary layer is the adaptation of the streamwise velocity, the boundary layer can be defined using this property and the $99\%$ thickness $\delta_{99}$ is defined as the wall-normal position where $u(y=\delta_{99})~=~U_{\infty}$.
 In Fig.~\ref{fig:lam_turb_profiles} we show an example on how the mean streamwise velocity $U(y)$ adapts from the velocity at the wall $u(y=0)=0$, to the outer velocity $U_{\infty}$, which has been scaled to be equal to 1, on a laminar and a TBL ZPG profiles.
 
 \begin{figure}[h!]
@@ -170,11 +170,11 @@ Introducing the flow decomposition (Eq.~\ref{eq:Rey_decomp}) into the continuity
 \begin{equation}
     \label{eq:pertub_cap2}
     {\pdv{u_i\myprime}{t} + 
-    U_k\pdv{u_i\myprime}{x_k} + u_k\myprime\pdv{u_i}{x_k} - \pdv{\overline{u_i\myprime u_k\myprime}}{x_k}  =
+    U_k\pdv{u_i\myprime}{x_k} + u_k\myprime\pdv{U_i}{x_k} + u_k\myprime\pdv{u\myprime_i}{x_k} - \pdv{\overline{u_i\myprime u_k\myprime}}{x_k}  =
     \frac {-1} {\rho} \pdv{p\myprime}{x_i} + \nu  \frac {\partial^2 u_k\myprime} {\partial x_k^2}    }.
 \end{equation}
 
-Note that the RANS equation are similar to the NS equation, except that for the time derivative which is zero and an aditional term $\pdv{\overline{u_i\myprime u_k\myprime}}/{x_k}$ which can be included within the divergence of the viscous forces term, for that reason the terms $\rho \overline{u_i\myprime u_k\myprime}$ are called Reynolds-stresses. In the following, since the density is considered as constant, we will refer as Reynolds-stress (RS) to the terms in the tensor $\overline{u_i\myprime u_k\myprime}$, wich are also known as the variance or covariance of the total velocities $u_i$, $u_k$.
+Note that the RANS equation are similar to the NS equation, with the exception of the time derivative which is zero and it has an additional term $\pdv{\overline{u_i\myprime u_k\myprime}}/{x_k}$ which can be included within the divergence of the viscous forces term, for that reason the terms in the tensor $\rho \overline{u_i\myprime u_k\myprime}$ are called Reynolds-stresses. In the following, since the density is considered as constant, we will refer as Reynolds-stress (RS) to the terms in the tensor $\overline{u_i\myprime u_k\myprime}$, wich are also known as the variance or covariance of the total velocities $u_i$, $u_k$.
 From the RANS equations it is interesting to see the mean velocities and the RS terms since they are an indicative of the level of turbulence and how it is affected by the pressure gradients and viscous forces on the right hand side (RHS) of the equation.
 
 The equation for the perturbation velocities is useful since we can multiply by another perturbation velocity such as $u_{j}\myprime \cdot \left( \pdv{u_{i}\myprime}{t} + ... \right) $ or obtain the two-point correlation $\mathcal{R}_{u_i\myprime u_j\myprime}$ through the correlation denoted with the symbol $(\cdot \star \cdot)$ as in $ u_{i}\myprime \star \left( \pdv{u_{j}\myprime}{t} + ... \right)$. The former gives the Reynolds-stress transport equations (Eq.~\ref{eq:RS_transport_cap2}) where the turbulent kinetic energy budgets are a special case. The latter is used as in \cite{lee_moser_2019}, to obtain the power spectral density of each term of the Reynolds-stress transport equations.

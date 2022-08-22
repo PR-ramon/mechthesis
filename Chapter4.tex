@@ -1,35 +1,128 @@
 
-\subsubsection{Interscale transport of energy.}
+\section{Interscale transport of energy.}
 
 From the Reynolds transport equation or the KE, MKE and TKE budget equations, it was possible to obtain a term called ``Production'' which is composed by the RS and the mean velocity gradients, and it can be interpreted as a source of turbulent energy in the TKE equation and a sink in the MKE equation. Their contribution are cancelling each other when added to obtain the KE equation.
 
 Following this idea, a similar term is looked for in the Reynolds-stress transport equations, that may indicate the transfer of energy between large scales and small scales.
-In order to obtain such a decomposition, we follow the steps in \cite{PRL2018_Kawata, JFM2019_kawata_alfredsson}, where the perturbation velocity is further decomposed in a contribution from large scales $u_i^L$ and a contribution from small scales $u_i^S$, where the separation between large or small scales is made by a cutoff frequency/wavenumber in Fourier space $k_{z,c}$.
+In order to obtain such a decomposition, we follow the steps in \cite{PRL2018_Kawata, JFM2019_kawata_alfredsson}, where the perturbation velocity is further decomposed in a contribution from large scales $u_i^L$ and a contribution from small scales $u_i^S$, where the separation between large or small scales is made by a cutoff frequency/wavenumber in Fourier space $k_{z,c}$. If we denote $\mathcal{F}(u\myprime(z)) = \hat{u}(k_z)$, then, $u^L(z)_{k_{z,c}} = \mathcal{F}^{-1}( \hat{u}(k_z \le k_{z,c}) ) $ and $u^S(z)_{k_{z,c}} = \mathcal{F}^{-1}( \hat{u}(k_z > k_{z,c}) ) $.
+The decomposition is shown in Eq.\ref{eq:intersc_decomp}, and the sharp Fourier filter used for the decomposition allows for the properties in Eqs.~\ref{eq:intsc_meanZ} , \ref{eq:intsc_meanZT} and \ref{eq:intsc_meanZT_LS}. 
 \begin{equation}
     \label{eq:intersc_decomp}
     u_i\myprime = u_i^L + u_i^S,
 \end{equation}
 \begin{equation}
-    \label{eq:intersc_decomp}
+    \label{eq:intsc_meanZ}
     \langle u_i\myprime u_j\myprime \rangle_z = 
     \langle u_i^L u_j^L \rangle_z + 
     \langle u_i^S u_i^S \rangle_z
 \end{equation}
 \begin{equation}
-    \label{eq:intersc_decomp}
+    \label{eq:intsc_meanZT}
     \overline{u_i\myprime u_j\myprime} = 
     \overline{ u_i^L u_j^L} + 
     \overline{ u_i^S u_i^S}
 \end{equation}
-
 \begin{equation}
-    \label{eq:intersc_decomp}
+    \label{eq:intsc_meanZT_LS}
     \overline{ u_i^L u_j^S} = 
     \overline{ u_i^S u_j^L} = 0
 \end{equation}
 
+This decomposition will be used to decompose the Reynolds-stress transport equation into a component given by large scales and another by small scales. To obatain this equation for a given $k_{z,c}$, we apply the filter in the spanwise direction, and in physical space the total average is performed. If this is done for all possible cutt-off frequencies, then the spectra of each term can be obtained using the property,
+\begin{equation}
+    \label{eq:intsc_der_spec}
+    \overline{u\myprime_i u\myprime_j}  = \int_{0}^{\infty} \langle \phi_{ij}(k_z) \rangle_t \mathrm{d}k_z  ~~ \rightarrow ~~ 
+    \pdv{\overline{u\myprime_i u\myprime_j}}{k_{z,c}} = \langle \phi_{ij}(k_z) \rangle_t
+\end{equation}
+
+The spectrum of terms in the Reynolds-stress transport equation which are a multiplication of two perturbations, can be obtained through the Fourier transform of the two-point correlations of those perturbations, however, there is a term composed by a triple multiplication of perturbation velocities.
+To obtain the spectra of a term composed by more than two perturbation components, the decomposition into large and small scale components (Eqs.~\ref{eq:intsc_meanZ} , \ref{eq:intsc_meanZT} and \ref{eq:intsc_meanZT_LS}) and the spectral property in Eq..~\ref{eq:intsc_der_spec} are used.
+The equation for the perturbations Eq.~\ref{eq:pertub_cap2} contains a term with two velocity perturbations, and once it is multiplied by $u\myprime_i$ or $u\myprime_j$ to obtain the Reynolds-stress transport equation, then we will obtain a triple perturbation term, for which we need the previously explained decomposition to obtain the spectrum. This triple term can be transformed into a transport $D_{ij}$,
+
+\begin{equation}
+    \overline{ u\myprime_i u\myprime_k \pdv{u\myprime_j}{x_k} + u\myprime_j u\myprime_k \pdv{u\myprime_i}{x_k} } = 
+    \overline{ u\myprime_k \pdv{  u\myprime_i u\myprime_j }{x_k} } = 
+    \pdv{ \overline{ u\myprime_i u\myprime_j u\myprime_k } }{x_k}  = 
+    - D_{ij}. 
+    % 
+\end{equation}
+
+If we use the order ``ijk'' and L to denote ``large'' scales and S to denote ``small'' scales, then the term $u_i^Lu_j^Lu_k^S$ can be denoted as ``LLS'' and the derivative $\pdv{u_i^L}/{x_k}$ can be write as $\partial_k(L)$.
+then the term $-D_{ij}$ can be written for a $k_{z,c}$ as 
+
+%---------------------------------------------------------------------------------------
+% \begin{multline}
+\begin{equation}
+    \label{eq:Dij_LLL_decomp}
+    - D_{ij} = \pdv{ (\overline{LLL} + \overline{LLS} + \overline{LSL} + \overline{LSS} + \overline{SLL} + \overline{SLS} + \overline{SSL} + \overline{SSS} ) }{x_k}.
+\end{equation}
+% \end{multline}
+%---------------------------------------------------------------------------------------
+
+If instead of multiplying by $u\myprime_i$ or $u\myprime_j$ the equation PERT, we multiply by the ``large'' or ``small'' component, then we are dividing the Reynolds-stress transport equation into the contribution by large and small scales.
+For large scales the triple term obtained is,
+% \begin{multline}
+\begin{equation}
+    \label{eq:intsc_3term_large}
+    \overline{ \left( u_i^L \pdv{u\myprime_j}{x_k} + u_j^L \pdv{u\myprime_i}{x_k} \right) u\myprime_k } = Tr_{ij} - D_{ij}^L,
+    % 
+\end{equation}
+% \end{multline}
+while the small scale contribution is,
+% \begin{multline}
+\begin{equation}
+    \label{eq:intsc_3term_small}
+    \overline{ \left( u_i^S \pdv{u\myprime_j}{x_k} + u_j^S \pdv{u\myprime_i}{x_k} \right) u\myprime_k } = -Tr_{ij} - D_{ij}^S.
+    % 
+\end{equation}
+% \end{multline}
+
+Note that $D_{ij}^L$ and $D_{ij}^S$ are the contributions to the total transport $D_{ij}$ by large and small scales respectively. The term $Tr_{ij}$ which cancels if the large and small contributions are added, is a byproduct obtained when we rearrange the terms in Eqs.~\ref{eq:intsc_3term_large} and \ref{eq:intsc_3term_small} to obtain $D_{ij}^L$ and $D_{ij}^S$.
 
 
-\begin{itemize}
-    \item 
-\end{itemize}
+\subsection{Indetermination of the term $Tr_{ij}$}
+We are going to expand the triple correlation term for large and small scales to see what components of $D_{ij}$ are directly obtained in $D_{ij}^L$ and $D_{ij}^S$ and what other terms need to be added and subtracted to obtain $D_{ij} = D_{ij}^L + D_{ij}^S$, while the remaining terms will form the interscale transport term $Tr_{ij}$.
+The decomposition for large scales reads like:
+\begin{flalign}
+    \label{eq:intsc_3term_small}
+    \left( u_i^L \pdv{u\myprime_j}{x_k} + u_j^L \pdv{u\myprime_i}{x_k} \right) u\myprime_k  = \left( u_i^L \pdv{(u_j^L + u_j^S)}{x_k} + u_j^L \pdv{(u_i^L + u_i^S)}{x_k} \right) u\myprime_k &&\\\nonumber
+    \phantom{\left( u_i^L \pdv{u\myprime_j}{x_k} + u_j^L \pdv{u\myprime_i}{x_k} \right) u\myprime_k} = 
+    \left( \pdv{(u_i^L u_j^L)}{x_k} + u_i^L \pdv{u_j^S}{x_k} + \pdv{u_i^S}{x_k} u_j^L  \right) u\myprime_k &&\\\nonumber
+    = \left( \pdv{(u_i^L u_j^L u_k^L)}{x_k} + \pdv{(u_i^L u_j^L u_k^S)}{x_k}  \right)  + 
+    \left( u_i^L \pdv{u_j^S}{x_k} + \pdv{u_i^S}{x_k} u_j^L \right)  u\myprime_k.
+\end{flalign}    
+ 
+For small scales the decomposition looks like:
+\begin{flalign}
+    \label{eq:intsc_3term_small}
+    \left( u_i^S \pdv{u\myprime_j}{x_k} + u_j^S \pdv{u\myprime_i}{x_k} \right) u\myprime_k  = \left( u_i^S \pdv{(u_j^L + u_j^S)}{x_k} + u_j^S \pdv{(u_i^L + u_i^S)}{x_k} \right) u\myprime_k &&\\\nonumber
+    \phantom{\left( u_i^L \pdv{u\myprime_j}{x_k} + u_j^L \pdv{u\myprime_i}{x_k} \right) u\myprime_k} = 
+    \left( \pdv{(u_i^S u_j^S)}{x_k} + u_i^S \pdv{u_j^L}{x_k} + \pdv{u_i^L}{x_k} u_j^S  \right) u\myprime_k &&\\\nonumber
+    = \left( \pdv{(u_i^S u_j^S u_k^L)}{x_k} + \pdv{(u_i^S u_j^S u_k^S)}{x_k}  \right)  + 
+    \left( u_i^S \pdv{u_j^L}{x_k} + \pdv{u_i^L}{x_k} u_j^S \right)  u\myprime_k 
+\end{flalign}    
+
+Note that we have only used the property of the derivative of a multiplication $\pdv{(a_i b_j)}/{x_k} = a_i(\pdv{b_j}/{x_k}) + (\pdv{a_i}/{x_k})b_j $, and the continuity equation ($\pdv{u\myprime_k}/{x_k}=0$), which allows for $\pdv{(a_i u\myprime_k)}/{x_k} = (\pdv{a_i}/{x_k})u\myprime_k $.
+
+From Eqs.\ref{eq:intsc_3term_large} and \ref{eq:intsc_3term_small} we can see that only 4 of the 8 terms of $D_{ij}$ are directly obtained in the form of a transport of a triple velocity correlation. In Eq.\ref{eq:Dij_LLL_decomp} the first two terms (LLL, LLS) are uniquely provided by the large scales $D_{ij}^L$ and the last two terms (SSL, SSS) are provided by the small scales in $D_{ij}^S$.
+
+The other terms have to be obtained by adding and subtracting and can be provided by both large or small scales. As an example, we will obtain the terms (LSL+LSS).
+\begin{equation}
+    \pdv{(LSL + LSS)}{x_k} = \left( \pdv{u_i^L u_j^S}{x_k} \right)u\myprime_k = \left( u_i^L \pdv{u_j^S}{x_k} + \pdv{u_i^L}{x_k}u_j^S \right)u\myprime_k.
+\end{equation}
+We can see that if we add and subtract the term $ (\pdv{u_i^L}/{x_k}) u_j^S u\myprime_k$ to the large scales then Eq.\ref{eq:intsc_3term_large} becomes,
+
+% \begin{flalign}
+%     \label{eq:intsc_3term_small_2}
+%     \left( u_i^L \pdv{u\myprime_j}{x_k} + u_j^L \pdv{u\myprime_i}{x_k} \right) u\myprime_k  = &&\\\nonumber
+%     \left( \pdv{(u_i^L u_j^L u_k^L)}{x_k} + \pdv{(u_i^L u_j^L u_k^S)}{x_k} + \pdv{(u_i^L u_j^S u_k^L)}{x_k} + \pdv{(u_i^L u_j^S u_k^S)}{x_k} \right)  + 
+%     \left( - \pdv{u_i^L}{x_k} u_j^S + \pdv{u_i^S}{x_k} u_j^L \right)  u\myprime_k.
+% \end{flalign}
+\begin{multline}
+    \label{eq:intsc_3term_small_2}
+    \left( u_i^L \pdv{u\myprime_j}{x_k} + u_j^L \pdv{u\myprime_i}{x_k} \right) u\myprime_k  =\\
+    =\left( \pdv{(LLL+LLS+LSL+LSS)}{x_k} \right)  + 
+    \left( - \pdv{u_i^L}{x_k} u_j^S + \pdv{u_i^S}{x_k} u_j^L \right)  u\myprime_k.
+\end{multline}
+    
+In this way we can construct the transport terms $D_{ij}^L$ and $D_{ij}^S$ together with the interscale transport term $Tr_{ij}$ which depends on the choice for $D_{ij}^L$ and $D_{ij}^S$.  
